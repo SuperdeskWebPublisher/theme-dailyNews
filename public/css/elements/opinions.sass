@@ -1,0 +1,73 @@
+.opinions
+  .opinionsItem
+    text-align: center
+    @include mobileBorder()
+    +sm
+      text-align: left
+  .opinionsItem__image
+    position: relative
+    width: 145px
+    display: block
+    float: none
+    margin: 0 auto 20px auto
+    +sm
+      float: left
+      margin-right: 40px
+      margin-bottom: 0px
+    &:after
+      content: " "
+      display: block
+      position: absolute
+      top: 0px
+      right: -10px
+      background: no-repeat url(../img/quote-purple.svg)
+      width: 69px
+      height: 53px
+    figure
+      width: 140px
+      height: 140px
+      border-radius: 50%
+      overflow: hidden
+  .opinions__author
+    background: #be6895
+    padding: 10px 30px
+    color: $colorWhite
+    display: inline-block
+    margin-top: -10px
+    position: relative
+    &:before
+      display: block
+      content: " "
+      width: 0px
+      height: 0px
+      position: absolute
+      z-index: -1
+      top: -21px
+      left: 0px
+      border-style: solid
+      border-width: 21px 36px 0px 0px
+      border-color: transparent #7d4864 transparent transparent
+  .opinionsItem__headline
+    font-size: 2.3rem
+    font-weight: 700
+    margin-top: 0px
+    margin-bottom: 15px
+    transition: 0.2s color
+    &:hover
+      color: $colorTheme
+  .opinionsItem--small
+    text-align: left
+  .opinionsItem__image--small
+    width: 70px
+    float: left
+    margin-right: 20px
+    margin-bottom: 0px
+    &:after
+      display: none
+    figure
+      width: 70px
+      height: 70px
+  .opinionsItem__headline--small
+    font-size: 2.1rem
+    margin-top: 5px
+    margin-bottom: 0px

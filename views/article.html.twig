@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<main class="container">
+		<div class="row">
+
+			<div class="article col-md-9 col-sm-12 col-xs-12">
+
+				<article>
+
+					<span class="article__kicker">Lorem ipsum</span>
+					<h2 class="article__headline marginBottom30"> {{ gimme.article.title }}</h2>
+
+					<div class="article__lead">
+						<p>{{ gimme.article.lead|raw }}</p>
+					</div>
+
+					<div class="articleMetadata marginBottom30">
+						<span class="articleMetadata__byline">
+							<figure class="articleMetadata__image"><a href="#"><img src="{{asset('theme/img/article_img/140x140.png')}}"></a></figure>
+							by <a href="#">{{gimme.article.metadata.byline}}</a>
+						</span>
+
+						<time class="articleMetadata__info" datetime="{{ gimme.article.publishedAt|date("c") }}">{{ gimme.article.publishedAt|date("d F Y, H:i \\h") }}</time>
+
+						{% if gimme.article.publishedAt != gimme.article.updatedAt %}
+							<span class="articleMetadata__info">updated <span class="articleMetadata__updated">{{ gimme.article.updatedAt|date("d F Y, H:i \\h") }}</span></span>
+						{% endif %}
+
+						<span class="articleMetadata__share">
+							Share
+						</span>
+					</div>
+
+					<figure class="article__image">
+						<a href="#"><img src="{{asset('theme/img/article_img/930x450.png')}}"></a>
+						<figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</figcaption>
+					</figure>
+
+					<div class="article__text marginTop30">
+						{{ gimme.article.body|raw }}
+						<div class="article__entrefilet article__floatLeft">
+							<h3>Entrefilet</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu enim in velit bibendum gravida nec et odtio. Cras congue, orci vitae eleifend congue, felis mi tincidunt risus, et lobortis turpis ex vel velit. Nullam pellentesque tempor magna a fermentum.</p>
+						</div>
+					</div>
+
+				</article>
+
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+
+
+
+						<h3 class="sectionHeadingBold marginTop30"><a href="{{url(gimme.article.route)}}">More from {{gimme.article.route.name}}</a></h3>
+						<div class="row">
+							<div class="articleGrid col-md-6 col-sm-6 col-xs-12">
+
+								{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+									{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns'} %}
+								{% endgimmelist %}
+
+							</div>
+
+							<div class="articleListSmall col-md-6 col-sm-6 col-xs-12">
+
+								{% gimmelist article from articles|start(1)|limit(4)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+									{% include 'partials/articleListSmall__item.html.twig'  %}
+								{% endgimmelist %}
+
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+
+
+
+				<div class="banner greyBackground marginBottom30 col-md-12 col-sm-12 col-xs-12">
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<h2>Subscribe headline</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu enim in velit bibendum gravida nec et odio.</p>
+							<a class="button button--blue" href="#">Subscribe</a>
+						</div>
+
+						<div class="banner__image col-md-6 col-sm-6 col-xs-6">
+							<a href="#"><img src="{{asset('theme/img/subscribe_image.png')}}"></a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-md-3 col-sm-12 col-xs-12 pull-right">
+
+				{% include 'elements/most.html.twig' with {'class' : 'marginBottom30'} %}
+
+							<div class="ad hidden-xs marginTop30 marginBottom30">
+								<img src="{{ asset('theme/img/article_img/ad.png') }}">
+							</div>
+
+							<div class="marginTop30 marginBottom30">
+								{% include 'elements/facebook.html.twig' %}
+							</div>
+
+							{% include 'elements/selectedComment.html.twig' with {'class' : 'marginTop30 marginBottom30'} %}
+
+
+			</div>
+
+			<div class="article__arrows">
+				<a class="article__arrowItem article__arrowItem--prev" href="#">
+					<div class="article__arrow">
+						<img src="{{asset('theme/img/arrow_prev.svg')}}">
+					</div>
+					<figure class="article__arrowsImage"><img src="{{asset('theme/img/article_img/140x140.png')}}"></figure>
+					<div class="article__arrows__text">
+						<span class="article__arrows__kicker">Lorem ipsum</span>
+						<h3 class="article__arrows__headline">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
+						<span class="article__arrows__pointer">Previous article</span>
+					</div>
+				</a>
+
+				<a class="article__arrowItem article__arrowItem--next" href="#">
+					<div class="article__arrow">
+						<img src="{{asset('theme/img/arrow_next.svg')}}">
+					</div>
+					<figure class="article__arrowsImage"><img src="{{asset('theme/img/article_img/140x140.png')}}"></figure>
+					<div class="article__arrows__text">
+						<span class="article__arrows__kicker">Lorem ipsum</span>
+						<h3 class="article__arrows__headline">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
+						<span class="article__arrows__pointer">Next article</span>
+					</div>
+				</a>
+			</div>
+
+		</div>
+
+	</main>
+	{% endblock %}

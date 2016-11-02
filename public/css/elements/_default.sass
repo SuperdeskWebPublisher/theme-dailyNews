@@ -1,0 +1,98 @@
+@import 'https://fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Source+Sans+Pro:300,400,600,700,900&subset=latin-ext'
+
+$fontRegular: 'Source Sans Pro', sans-serif
+$fontSerif: 'Merriweather', serif
+
+
+$colorBody: #F2F2F2
+$colorWhite: #fff
+$colorDark: #333333
+$colorTheme: #00a9e1
+
+html
+  font-size: 56%
+  +sm
+    font-size: 62.5%
+
+body
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  font-family: $fontRegular
+  font-size: 1.8em
+  font-weight: 400
+  color: $colorDark
+  padding-top: 0px
+
+h1,h2,h3,h4,h5,h6
+  font-family: $fontRegular
+  line-height: 110%
+  font-weight: 400
+
+h1
+  font-size: 3.5rem
+  &.sectionHeading
+    font-family: $fontSerif
+    text-align: center
+    font-weight: 300
+    margin: 40px 0px
+
+h2
+  font-size: 3rem
+
+h3
+  font-size: 2.5rem
+  &.sectionHeading
+    font-family: $fontSerif
+    font-size: 2.4rem
+    font-weight: 700
+    margin-top: 0px
+    margin-bottom: 30px
+  &.sectionHeadingBold
+    font-family: $fontSerif
+    font-size: 3rem
+    font-weight: 800
+    margin-bottom: 15px
+    padding-bottom: 10px
+    border-bottom: 1px solid #bbbbbb
+
+h4
+  font-size: 2rem
+  font-weight: 500
+
+h5
+  font-size: 1.5rem
+  font-weight: 500
+
+h6
+  font-size: 1rem
+  font-weight: 300
+
+a
+  color: $colorDark
+  text-decoration: none
+  transition: 0.2s
+
+.hover a
+  border-bottom: 2px solid transparent
+  &:hover
+    border-bottom: 2px solid
+
+p
+  color: $colorDark
+  font-family: $fontSerif
+  font-size: 1.6rem
+  font-weight: 300
+  line-height: 140%
+  margin-top: 0px
+  margin-bottom: 15px
+
+img
+  max-width: 100%
+
+input
+  font-family: $fontSerif
+  font-size: 1.4rem
+  font-style: italic
+  color: #777
+  padding: 10px 20px
+  margin: 0px

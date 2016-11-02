@@ -1,0 +1,56 @@
+.footer
+  background: $colorDark
+  color: $colorWhite
+  padding: 20px 0px
+  +sm
+    padding: 50px 0px
+  a, p
+    color: #dfdfdf
+  .footer__logo
+    img
+      max-width: 220px
+  .footer__section
+    margin: 20px 0px
+    ul
+      list-style: none
+      padding-left: 0px
+      margin: 0px
+      &.footer__sectionTwoColumns
+        -webkit-column-count: 2
+        -moz-column-count: 2
+        column-count: 2
+      li
+        display: inline-block
+        margin-right: 20px
+        margin-bottom: 10px
+        font-size: 1.6rem
+        +sm
+          display: block
+          margin-right: 0px
+  .footer__sectionHeadline
+    font-family: $fontSerif
+    font-size: 1.8rem
+    font-weight: 900
+    margin: 0px
+    margin-bottom: 20px
+  .footer__subscribeForm
+    margin-bottom: 30px
+    overflow: hidden
+    input
+      font-size: 1.4rem
+      float: left
+      width: 64%
+      height: 42px
+    button
+      width: auto
+      float: left
+      width: 36%
+      height: 42px
+      padding: 11px 20px
+  .footer__text
+    a, p
+      font-family: $fontRegular
+      font-size: 1.4rem
+      text-align: left
+      +sm
+        text-align: right

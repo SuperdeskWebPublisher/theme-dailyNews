@@ -1,0 +1,18 @@
+<article class="opinionsItem {{class}}">
+            <a class="opinionsItem__image" href="{{url(article)}}">
+              <figure>
+                <img src="{{ asset('theme/img/article_img/140x140.png') }}">
+              </figure>
+              <span class="opinions__author">
+               {{article.metadata.byline}}
+              </span>
+            </a>
+            <a href="{{url(article)}}">
+              <h3 class="opinionsItem__headline">{{article.title}}</h3>
+            </a>
+            <p class="opinionsItem__text">{% if foo is empty %}
+                    {{ article.body|striptags|safeTruncate(200,"...") }}
+                  {%else%}
+                    {{ article.lead|striptags|safeTruncate(200,"...") }}
+                  {%endif%}</p>
+          </article>

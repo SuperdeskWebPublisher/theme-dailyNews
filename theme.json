@@ -1,0 +1,13 @@
+{
+    "name": "swp/default-theme",
+    "title": "Daily News Theme",
+    "description": "Superdesk Web Publisher Daily News theme",
+    "authors": [
+        {
+            "name": "Sourcefabric z.ú.",
+            "email": "contact@sourcefabric.org",
+            "homepage": "https://www.sourcefabric.org",
+            "role": "Organization"
+        }
+    ]
+}

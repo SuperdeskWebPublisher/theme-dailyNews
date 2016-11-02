@@ -1,0 +1,67 @@
+.articleGrid
+  .articleGrid__item
+    @include mobileBorder()
+    &--twoColumns
+      &:nth-child(2n + 1)
+        clear: left
+    &--threeColumns
+      &:nth-child(3n + 1)
+        +md
+          clear: left
+      &:nth-child(2n + 1)
+        @media only screen and (min-width: 768px) and (max-width: 991px)
+          clear: left
+    &--fourColumns
+      &:nth-child(4n + 1)
+        +md
+          clear: none
+      &:nth-child(2n + 1)
+        @media only screen and (min-width: 768px) and (max-width: 991px)
+          clear: left
+  .articleGrid__image
+    position: relative
+    display: block
+    margin-right: 20px
+    width: 90px
+    float: left
+    +sm
+      margin-right: 0px
+      float: none
+      width: auto
+    &--smallMobile
+      width: 90px !important
+      margin-bottom: 0px !important
+      +sm
+        width: auto !important
+    img
+      width: 100%
+  .articleGrid__item:first-child
+    .articleGrid__image
+      width: 100%
+      margin-bottom: 20px
+      +sm
+        margin-bottom: 0px
+  .articleGrid__icon
+    position: absolute
+    top: 5px
+    right: 10px
+    width: 20px
+    height: 20px
+    -webkit-filter: drop-shadow( 1px 1px 4px rgba(0,0,0,.4) )
+    filter: drop-shadow( 1px 1px 4px rgba(0,0,0,.4) )
+  .articleGrid__kicker
+    font-size: 1.4rem
+    color: #ea545f
+    text-transform: uppercase
+    font-weight: 600
+    display: block
+    margin: 0px 0px 5px 0px
+    +sm
+      margin: 15px 0px 5px 0px
+  .articleGrid__headline
+    font-size: 2.1rem
+    font-weight: 700
+    margin: 5px 0px 10px 0px
+    transition: 0.2s color
+    &:hover
+      color: #019bce

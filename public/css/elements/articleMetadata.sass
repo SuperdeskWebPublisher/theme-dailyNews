@@ -1,0 +1,55 @@
+.articleMetadata
+  font-size: 1.4rem
+  .articleMetadata__byline
+    margin-right: 20px
+    color: $colorDark
+    &--white
+      +sm
+        color: $colorWhite
+    a
+      border-bottom: 1px dotted #00a9e1
+      &:hover
+        border-bottom: 1px solid #00a9e1
+  .articleMetadata__info
+    color: #929292
+    margin: 0px 10px
+    position: relative
+    &--white
+      +sm
+        color: $colorWhite
+      &.articleMetadata__shares
+        +sm
+          background: center left no-repeat url('../img/share-white.png')
+      &.articleMetadata__comments
+        +sm
+          background: center left no-repeat url('../img/comments-white.png')
+  .articleMetadata__shares
+    padding-left: 20px
+    background: center left no-repeat url('../img/share.png')
+  .articleMetadata__comments
+    padding-left: 20px
+    background: center left no-repeat url('../img/comments.png')
+    &:before
+      content: " "
+      display: inline-block
+      background: #929292
+      width: 2px
+      height: 2px
+      position: absolute
+      top: 8px
+      left: -12px
+  .articleMetadata__image
+    width: 70px
+    height: 70px
+    margin-right: 10px
+    display: inline-block
+    border-radius: 50%
+    overflow: hidden
+    vertical-align: middle
+  .articleMetadata__updated
+    color: $colorWhite
+    font-weight: 400
+    background: $colorTheme
+    padding: 5px 10px
+    margin-left: 10px
+    border-radius: 2px

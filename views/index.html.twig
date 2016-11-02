@@ -1,0 +1,179 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<main class="container">
+		<div class="row">
+			<div class="col-md-9 col-sm-12 col-xs-12">
+				{% cache 'frontTop' { time:600 } %}
+				{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+					{% include 'partials/mainArticle.html.twig'  %}
+				{% endgimmelist %}
+				<div class="row">
+					<div class="col-md-8 col-sm-12 col-xs-12 pull-right">
+						<div class="articleGrid row">
+						{% gimmelist article from articles|start(1)|limit(6)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+							{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--twoColumns col-md-6 col-sm-6 col-xs-12'} %}
+						{% endgimmelist %}
+				{% endcache %}
+						</div>
+					</div>
+
+					<div class="col-md-4 col-sm-12 col-xs-12 pull-right">
+						<div class="greyBackground articleListSmall marginBottom30">
+							<h3 class="sectionHeading">Latest news</h3>
+								{% gimmelist article from articles|start(0)|limit(6)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+									{% include 'partials/articleListSmall__item.html.twig'  %}
+								{% endgimmelist %}
+
+							<a class="button" href="/news">View all</a>
+
+						</div>
+
+						<div class="ad marginBottom30 hidden-xs">
+							<img src="{{ asset('theme/img/article_img/ad.png') }}">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xs-12 col-sm-12 col-md-3">
+
+				{% include 'elements/most.html.twig' with {'class' : 'marginBottom30'} %}
+
+				<div class="ad hidden-xs marginTop30 marginBottom30">
+					<img src="{{ asset('theme/img/article_img/ad.png') }}">
+				</div>
+
+				<div class="marginTop30 marginBottom30">
+					{% include 'elements/facebook.html.twig' %}
+				</div>
+
+				{% include 'elements/selectedComment.html.twig' with {'class' : 'marginTop30 marginBottom30'} %}
+
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="sectionHeadingBold marginTop30"><a href="#">Politics</a></h3>
+			</div>
+
+			<div class="articleGrid">
+
+				{% gimmelist article from articles|start(0)|limit(4)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+					{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns col-md-3 col-sm-6 col-xs-12'} %}
+				{% endgimmelist %}
+
+
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="col-md-9 col-sm-12 col-xs-12">
+				<div class="row opinions">
+					<div class="col-xs-12">
+						<h3 class="sectionHeadingBold marginTop30"><a href="#">Opinions</a></h3>
+					</div>
+
+					{% gimmelist article from articles|start(0)|limit(3)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+						{% if loop.index == 1 %}
+							{% include 'partials/opinionsItem.html.twig' with {'class' : 'col-sm-8 col-md-8 col-xs-12'} %}
+						{% else %}
+							{% include 'partials/opinionsItem--small.html.twig' with {'class' : 'col-sm-4 col-md-4 col-xs-12'} %}
+						{% endif %}
+					{% endgimmelist %}
+
+				</div>
+			</div>
+
+			<div class="stripBox col-md-3 col-sm-12 col-xs-12">
+				<a class="stripBox__title active" href="#">Voting poll</a>
+
+				<div class="votingPoll stripBox__sectionContent">
+					<h4 class="votingPoll__headline">Lorem ipsum dolor sit amet consectetur?</h4>
+					<form action="">
+						<ul>
+							<li class="stripBox__sectionItem"><input type="radio" name="poll" value="btn1" id="btn1"><label for="btn1">Lorem ipsum dolor sit amet consectetur</label></li>
+							<li class="stripBox__sectionItem"><input type="radio" name="poll" value="btn2" id="btn2"><label for="btn2">Lorem ipsum</label></li>
+							<li class="stripBox__sectionItem noBorder"><input type="radio" name="poll" value="btn3" id="btn3"><label for="btn3">Lorem ipsum dolor sit</label></li>
+							<li class="stripBox__sectionItem"><input class="button" type="submit" name="f_debate" value="Vote" id="pollBtn"></li>
+						</ul>
+					</form>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="sectionHeadingBold marginTop30"><a href="#">Society</a></h3>
+			</div>
+
+			<div class="articleGrid">
+
+				{% gimmelist article from articles|start(0)|limit(3)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+					{% if loop.index == 1 %}
+						{% include 'partials/mainArticle.html.twig' with {'class' : 'col-md-6 col-sm-12 col-xs-12', 'image':'small', 'deck': 'none'} %}
+					{% else %}
+						{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--threeColumns col-md-3 col-sm-6 col-xs-12'} %}
+					{% endif %}
+				{% endgimmelist %}
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="gallery marginTop30 marginBottom30 col-xs-12">
+				<figure class="gallery__image">
+					<a class="gallery__strip" href="#">Gallery</a>
+					<a href="#">
+						<img src="{{ asset('theme/img/article_img/1250x600.png') }}">
+					</a>
+				</figure>
+				<div class="gallery__text">
+					<h3 class="gallery__headline"><a href="#">TODO: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris quis rhoncus est. Nulla dignissim enim ut odio efficitur dignissim. Integer ultricies turpis lorem, porttitor mollis nibh tempor varius.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6 col-sm-12 col-xs-12">
+				<h3 class="sectionHeadingBold marginTop30"><a href="#">Sport</a></h3>
+				<div class="row">
+					<div class="articleGrid col-md-6 col-sm-6 col-xs-12">
+						{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+								{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns'} %}
+						{% endgimmelist %}
+					</div>
+					<div class="articleListSmall col-md-6 col-sm-6 col-xs-12">
+						{% gimmelist article from articles|start(1)|limit(3)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+								{% include 'partials/articleListSmall__item.html.twig'  %}
+						{% endgimmelist %}
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-sm-12 col-xs-12">
+				<h3 class="sectionHeadingBold marginTop30"><a href="#">Bussiness & Tech</a></h3>
+				<div class="row">
+					<div class="articleGrid col-md-6 col-sm-6 col-xs-12">
+						{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+								{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns'} %}
+						{% endgimmelist %}
+					</div>
+					<div class="articleListSmall col-md-6 col-sm-6 col-xs-12">
+						{% gimmelist article from articles|start(1)|limit(3)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+								{% include 'partials/articleListSmall__item.html.twig'  %}
+						{% endgimmelist %}
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</main>
+	{% endblock %}

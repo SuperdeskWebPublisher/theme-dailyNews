@@ -1,0 +1,39 @@
+.gallery
+  p, a
+    +sm
+      color: $colorWhite
+  .gallery__image
+    padding-bottom: 48%
+    height: 0px
+  .gallery__strip
+    font-size: 1.7rem
+    font-weight: 700
+    color: $colorWhite
+    position: absolute
+    text-transform: uppercase
+    background: $colorTheme
+    padding: 4px 18px
+    top: 20px
+    right: 6px
+    &:after
+      content: " "
+      display: block
+      position: absolute
+      bottom: -9px
+      right: 0px
+      width: 0
+      height: 0
+      border-style: solid
+      border-width: 9px 9px 0 0
+      border-color: #007aa3 transparent transparent transparent
+  .gallery__text
+    +sm
+      position: absolute
+      left: 55px
+      right: 35px
+      bottom: 30px
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5)
+  .gallery__headline
+    font-size: 3.2rem
+    font-weight: 900
+    margin: 12px 0px

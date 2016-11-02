@@ -1,0 +1,32 @@
+<article class="mainArticle {{class}}">
+
+            <figure class="mainArticle__image {% if image =='small' %}mainArticle__image--small{% endif %} ">
+              <a href="{{ url(article) }}">
+                {% if image=='small' %}
+                  <img src="{{ asset('theme/img/article_img/610x380.png') }}">
+                {% else %}
+                  <img src="{{ asset('theme/img/article_img/930x450.png') }}">
+                {% endif %}
+              </a>
+            </figure>
+          <div class="mainArticle__text ">
+            <a href="{{ url(article) }}">
+              <span class="mainArticle__kicker">Lorem ipsum</span>
+              <h2 class="mainArticle__headline">{{ article.title }}</h2>
+            </a>
+            {% if deck!='none' %}
+            <div class="mainArticle__teaser">
+              <p>{% if foo is empty %}
+                    {{ article.body|striptags|safeTruncate(200,"...") }}
+                  {%else%}
+                    {{ article.lead|striptags|safeTruncate(200,"...") }}
+                  {%endif%}</p>
+            </div>
+          {% endif %}
+            <div class="articleMetadata">
+              <span class="articleMetadata__byline articleMetadata__byline--white">by <a href="#">{{article.metadata.byline}}</a></span>
+              <a class="articleMetadata__shares articleMetadata__info articleMetadata__info--white" href="#">240</a>
+              <a class="articleMetadata__comments articleMetadata__info articleMetadata__info--white" href="#">20</a>
+            </div>
+          </div>
+        </article>

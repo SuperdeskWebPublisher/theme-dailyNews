@@ -1,0 +1,35 @@
+.margin
+  &Top10
+    margin-top: 10px
+  &Bottom10
+    margin-bottom: 10px
+  &Top30
+    margin-top: 30px
+  &Bottom30
+    margin-bottom: 30px
+.verticalMiddle
+  display: inline-block
+  vertical-align: middle
+  float: none
+.greyBackground
+  background: #eeeeee
+  padding: 30px
+  & > *:first-child
+    margin-top: 0px
+.noBorder
+  border: none !important
+
+@mixin mobileBorder()
+  margin-bottom: 20px
+  border-bottom: 1px dotted #cccccc
+  padding-bottom: 20px
+  +sm
+    margin-bottom: 30px
+    border-bottom: none
+    padding-bottom: 0px
+  &:last-child
+    border-bottom: none
+  &:first-child
+    border-bottom: 1px dotted #cccccc
+    +sm
+      border-bottom: none

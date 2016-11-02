@@ -1,0 +1,67 @@
+.mainArticle
+  position: relative
+  color: $colorWhite
+  margin-bottom: 20px
+  border-bottom: 1px dotted #cccccc
+  padding-bottom: 20px
+  +sm
+    margin-bottom: 30px
+    border-bottom: none
+    padding-bottom: 0px
+
+  p, a
+    +sm
+      color: $colorWhite
+  .mainArticle__image
+    padding-bottom: 51%
+    z-index: 1
+    height: 0px
+    margin: 0px -15px
+    +sm
+      padding-bottom: 48.4%
+      margin: 0px
+    &--small
+      padding-bottom: 65.1%
+      +sm
+        padding-bottom: 62.3%
+    img
+      width: 100%
+    a
+      position: relative
+      display: block
+      &:after
+        background-image: linear-gradient(0deg, rgba(0,15,20,0.6) 15%,rgba(0,15,20,0.15) 52%,rgba(0,15,20,0) 70%)
+        display: none
+        content: " "
+        height: 240px
+        width: 100%
+        position: absolute
+        bottom: 0px
+        +sm
+          display: block
+  .mainArticle__text
+    font-size: 1.6rem
+    +sm
+      position: absolute
+      left: 55px
+      right: 35px
+      bottom: 30px
+      max-width: 690px
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5)
+
+  .mainArticle__kicker
+    font-size: 1.4rem
+    font-weight: 900
+    color: #ea545f
+    display: block
+    text-transform: uppercase
+    margin-top: 20px
+    +sm
+      color: $colorWhite
+      margin-top: 0px
+  .mainArticle__headline
+    font-size: 3.9rem
+    font-weight: 900
+    margin: 12px 0px
+    &--small
+      font-size: 3.2rem

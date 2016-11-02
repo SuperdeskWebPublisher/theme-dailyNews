@@ -1,0 +1,12 @@
+.okayNav a:hover {
+  color: #546edb;
+}
+.okayNav__nav--visible a:hover {
+  color: #546edb;
+}
+.okayNav__menu-toggle span {
+  background: #2e2e33;
+}
+.okayNav__menu-toggle.icon--active span {
+  background: #00a9e1;
+}

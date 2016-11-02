@@ -1,0 +1,16 @@
+$screen-sm: 769px
+$screen-md: 992px
+$screen-lg: 1280px
+
+
+=sm
+  @media (min-width: #{$screen-sm})
+    @content
+
+=md
+  @media (min-width: #{$screen-md})
+    @content
+
+=lg
+  @media (min-width: #{$screen-lg})
+    @content

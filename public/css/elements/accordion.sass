@@ -1,0 +1,67 @@
+.accordion
+  overflow: hidden
+  counter-reset: number
+  #accordion-1
+    display: block
+
+  .accordion__sectionTitle
+    font-family: $fontSerif
+    color: $colorWhite
+    font-size: 2rem
+    position: relative
+    width: 100%
+    padding: 17px
+    display: inline-block
+    background: #777777
+    border-bottom: 1px solid $colorWhite
+    transition: all linear 0.15s
+    &:hover
+      background: #888
+    &.active
+      background: $colorTheme
+      border-bottom: none
+      text-decoration: none
+      &:before
+        content: " "
+        display: block
+        position: absolute
+        bottom: -9px
+        left: 0px
+        width: 0
+        height: 0
+        border-style: solid
+        border-width: 0 9px 9px 0
+        border-color: transparent #007aa3 transparent transparent
+
+  .accordion__sectionContent
+    margin: 0px 10px
+    display: none
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1)
+    border-left: 1px solid rgba(0, 0, 0, 0.1)
+    border-right: 1px solid rgba(0, 0, 0, 0.1)
+  
+  .accordion__sectionItem
+    position: relative
+    padding: 15px 70px 15px 15px
+    border-bottom: 1px dotted #cccccc
+    &:after
+      position: absolute
+      top: -15px
+      right: 10px
+      font-size: 10rem
+      color: #ededed
+      font-weight: 600
+      counter-increment: number
+      content: counter(number)
+    &:last-child
+      border-bottom: none
+  .accordion__sectionHeadline
+    font-size: 1.8rem
+    font-weight: 700
+    margin-top: 0px
+    margin-bottom: 5px
+    &:hover a
+      color: $colorTheme
+  .accordion__sectionCount
+    font-size: 1.4rem
+    color: #929292
