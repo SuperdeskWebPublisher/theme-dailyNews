@@ -11,6 +11,18 @@ var cssmin = require('gulp-cssmin')
 var watch = require('gulp-watch')
 var swPrecache = require('sw-precache')
 var uglify = require('gulp-uglify')
+var replace = require('gulp-replace')
+
+
+
+gulp.task('version', function () {
+    var time = new Date().getTime()
+    return gulp.src(['views/base.html.twig'])
+    .pipe(replace(/version\s=\s\'\d*\'/g, 'version = \''+time+'\''))
+    .pipe(gulp.dest('views'));
+
+});
+
 
 
 // service worker generator
@@ -110,7 +122,7 @@ gulp.task('jsmin', ['js'],function(){
 
 
 
-gulp.task('build', ['sass', 'js', 'cssmin' , 'jsmin' ]);
+gulp.task('build', ['sass', 'js', 'cssmin' , 'jsmin','version' ]);
 
 gulp.task('watch', function() {
   gulp.watch('public/css/**/*.+(css|sass|scss)', ['sass']);
