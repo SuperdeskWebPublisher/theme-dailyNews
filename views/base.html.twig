@@ -7,26 +7,20 @@
   Remove this if you use the .htaccess -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>{% block title %}Daily News Theme for Superdesk Web Publisher{% endblock %}</title>
+  <title>{% block title %}Daily News Theme for Superdesk Publisher{% endblock %}</title>
   <meta name="author" content="Sourcefabric">
 
-  <meta name="description" content="Superdesk Web Publisher is state of the art publishing system.">
+  <meta name="description" content="Superdesk Publisher is state of the art publishing system.">
   <meta name="keywords" content="Superdesk, Sourcefabric, open source, media, journalism">
 
  {#  <!-- RSS & Pingback -->
   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/en/static/rss/"> #}
 
-
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
 
   <link rel="shortcut icon" href="{{ asset('theme/img/favicon.ico') }}">
 
-  <link rel="stylesheet" href="{{ asset('theme/dist/style.css') }}?{{version}}" />
-
-
-
+  <link rel="stylesheet" href="{{ asset('theme/dist/style.css') }}" />
 
 </head>
 <body>
@@ -94,26 +88,11 @@
 
   </header>
 
-  <div class="navigation">
-    <nav class="container">
-      <div id="header" class="okayNav-header">
-            <nav role="navigation" id="nav-main" class="okayNav">
-                <ul>
-            <li><a href="section.php">Home</a></li>
-            <li><a href="section.php">Sports</a></li>
-            <li><a href="section.php">Bussiness & Tech</a></li>
-            <li><a href="section.php">Opinion</a></li>
-            <li><a href="section.php">Politics</a></li>
-            <li><a href="section.php">Lifestyle</a></li>
-            <li><a href="section.php">Arts</a></li>
-            <li><a href="section.php">Gallery</a></li>
-            <li><a href="section.php">Dialogue</a></li>
-            <li><a href="section.php">Events</a></li>
-                </ul>
-            </nav>
-        </div><!-- /header -->
-    </nav>
-  </div>
+{% container 'mainNav' %}
+
+{# Content of this container is defined by menu widget which is linked to it. Template used for this menu is widgets/menu1.html.twig #}
+
+{% endcontainer %}
 
   <div class="trendingTopics">
     <div class="container">
@@ -144,20 +123,11 @@
         <a href="#"><img src="{{ asset('theme/img/logo-white.svg') }}"></a>
       </div>
 
-      <div class="footer__section col-sm-4 col-md-4 col-xs-12 hidden-xs">
-        <h4 class="footer__sectionHeadline">Sections</h4>
-        <ul class="footer__sectionTwoColumns">
-          <li><a href="#">Sports</a></li>
-          <li><a href="#">Bussiness & Tech</a></li>
-          <li><a href="#">Opinion</a></li>
-          <li><a href="#">Politics</a></li>
-          <li><a href="#">Lifestyle</a></li>
-          <li><a href="#">Arts</a></li>
-          <li><a href="#">Gallery</a></li>
-          <li><a href="#">Dialogue</a></li>
-          <li><a href="#">Events</a></li>
-        </ul>
-      </div>
+{% container 'footerNav' %}
+
+{# Content of this container is defined by menu widget which is linked to it. Template used for this menu is widgets/menu2.html.twig #}
+
+{% endcontainer %}      
 
       <div class="footer__section col-sm-2 col-md-2 col-xs-12">
         <h4 class="footer__sectionHeadline">Social</h4>
@@ -192,12 +162,38 @@
   </div>
 </footer>
 
-
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="{{ asset('theme/dist/all.js') }}"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+$('#nav-main').okayNav();
+$('#topics').okayNav();
 
-    <script src="{{ asset('theme/dist/all.js') }}?{{version}}"></script>
+  function close_accordion_section() {
+    jQuery('.accordion .accordion__sectionTitle').removeClass('active');
+    jQuery('.accordion .accordion__sectionContent').slideUp(300).removeClass('open');
+  }
 
+  jQuery('.accordion__sectionTitle').click(function(e) {
+    // Grab current anchor value
+    var currentAttrValue = jQuery(this).attr('href');
+
+    if(jQuery(e.target).is('.active')) {
+      close_accordion_section();
+    }else {
+      close_accordion_section();
+
+      // Add active class to section title
+      jQuery(this).addClass('active');
+      // Open up the hidden content panel
+      jQuery('.accordion ' + currentAttrValue).slideDown(300).addClass('open'); 
+    }
+
+    e.preventDefault();
+  });
+
+});
+</script>
 
   </body>
   </html>

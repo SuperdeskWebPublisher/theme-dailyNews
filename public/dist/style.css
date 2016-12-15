@@ -817,7 +817,9 @@ input {
       font-weight: 900;
       display: inline-block;
       margin-right: 40px; }
-      .navigation ul li a:hover {
+      .navigation ul li.current a {
+        color: #00a9e1; }
+      .navigation ul li.current a:hover {
         color: #00a9e1; }
 
 .opinions .opinionsItem {

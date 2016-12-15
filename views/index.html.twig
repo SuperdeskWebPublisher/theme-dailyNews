@@ -6,13 +6,13 @@
 		<div class="row">
 			<div class="col-md-9 col-sm-12 col-xs-12">
 				{% cache 'frontTop' { time:600 } %}
-				{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt', 'desc') with {'route': '/news'}  %}
-					{% include 'partials/mainArticle.html.twig'  %}
+				{% gimmelist article from articles|start(0)|limit(1) %}
+					{% include 'partials/mainArticle.html.twig' %}
 				{% endgimmelist %}
 				<div class="row">
 					<div class="col-md-8 col-sm-12 col-xs-12 pull-right">
 						<div class="articleGrid row">
-						{% gimmelist article from articles|start(1)|limit(6)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+						{% gimmelist article from articles|start(1)|limit(6) %}
 							{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--twoColumns col-md-6 col-sm-6 col-xs-12'} %}
 						{% endgimmelist %}
 				{% endcache %}
@@ -22,7 +22,7 @@
 					<div class="col-md-4 col-sm-12 col-xs-12 pull-right">
 						<div class="greyBackground articleListSmall marginBottom30">
 							<h3 class="sectionHeading">Latest news</h3>
-								{% gimmelist article from articles|start(0)|limit(6)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+								{% gimmelist article from articles|start(0)|limit(6)  %}
 									{% include 'partials/articleListSmall__item.html.twig'  %}
 								{% endgimmelist %}
 
@@ -62,7 +62,7 @@
 
 			<div class="articleGrid">
 
-				{% gimmelist article from articles|start(0)|limit(4)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+				{% gimmelist article from articles|start(0)|limit(4) with {'route': '/politics'}  %}
 					{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns col-md-3 col-sm-6 col-xs-12'} %}
 				{% endgimmelist %}
 
@@ -75,10 +75,10 @@
 			<div class="col-md-9 col-sm-12 col-xs-12">
 				<div class="row opinions">
 					<div class="col-xs-12">
-						<h3 class="sectionHeadingBold marginTop30"><a href="#">Opinions</a></h3>
+						<h3 class="sectionHeadingBold marginTop30"><a href="#">Business</a></h3>
 					</div>
 
-					{% gimmelist article from articles|start(0)|limit(3)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+					{% gimmelist article from articles|start(0)|limit(3) with {'route': '/business'}  %}
 						{% if loop.index == 1 %}
 							{% include 'partials/opinionsItem.html.twig' with {'class' : 'col-sm-8 col-md-8 col-xs-12'} %}
 						{% else %}
@@ -109,12 +109,12 @@
 
 		<div class="row">
 			<div class="col-xs-12">
-				<h3 class="sectionHeadingBold marginTop30"><a href="#">Society</a></h3>
+				<h3 class="sectionHeadingBold marginTop30"><a href="#">Sci/Tech</a></h3>
 			</div>
 
 			<div class="articleGrid">
 
-				{% gimmelist article from articles|start(0)|limit(3)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+				{% gimmelist article from articles|start(0)|limit(3) with {'route': '/scitech'}  %}
 					{% if loop.index == 1 %}
 						{% include 'partials/mainArticle.html.twig' with {'class' : 'col-md-6 col-sm-12 col-xs-12', 'image':'small', 'deck': 'none'} %}
 					{% else %}
@@ -142,15 +142,15 @@
 
 		<div class="row">
 			<div class="col-md-6 col-sm-12 col-xs-12">
-				<h3 class="sectionHeadingBold marginTop30"><a href="#">Sport</a></h3>
+				<h3 class="sectionHeadingBold marginTop30"><a href="#">Sports</a></h3>
 				<div class="row">
 					<div class="articleGrid col-md-6 col-sm-6 col-xs-12">
-						{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+						{% gimmelist article from articles|start(0)|limit(1) with {'route': '/sports'}  %}
 								{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns'} %}
 						{% endgimmelist %}
 					</div>
 					<div class="articleListSmall col-md-6 col-sm-6 col-xs-12">
-						{% gimmelist article from articles|start(1)|limit(3)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+						{% gimmelist article from articles|start(1)|limit(3) with {'route': '/sports'}  %}
 								{% include 'partials/articleListSmall__item.html.twig'  %}
 						{% endgimmelist %}
 					</div>
@@ -158,15 +158,15 @@
 			</div>
 
 			<div class="col-md-6 col-sm-12 col-xs-12">
-				<h3 class="sectionHeadingBold marginTop30"><a href="#">Bussiness & Tech</a></h3>
+				<h3 class="sectionHeadingBold marginTop30"><a href="#">Entertainment</a></h3>
 				<div class="row">
 					<div class="articleGrid col-md-6 col-sm-6 col-xs-12">
-						{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+						{% gimmelist article from articles|start(0)|limit(1) with {'route': '/entertainment'}  %}
 								{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns'} %}
 						{% endgimmelist %}
 					</div>
 					<div class="articleListSmall col-md-6 col-sm-6 col-xs-12">
-						{% gimmelist article from articles|start(1)|limit(3)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+						{% gimmelist article from articles|start(1)|limit(3) with {'route': '/entertainment'}  %}
 								{% include 'partials/articleListSmall__item.html.twig'  %}
 						{% endgimmelist %}
 					</div>

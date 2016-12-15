@@ -1,7 +1,17 @@
 <article class="articleGrid__item {{ class }}">
                 <a class="articleGrid__image articleGrid__image--smallMobile" href="{{ url(article) }}">
                   <figure>
-                    <img src="{{ asset('theme/img/article_img/290x180.png') }}">
+
+{% gimmelist media from articleMedia|limit(1) with {'article': article} %}
+  {% if media.renditions is iterable %}   
+    {% for rendition in media.renditions %} 
+      {% if rendition.name == '478x326' %}  
+                    <img src="{{ url(rendition) }}" alt="{{ media.body }}" width="290" height="180" />
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endgimmelist %}
+
                   </figure>
                 </a>
                 <a href="{{ url(article) }}">

@@ -8,25 +8,25 @@
       <div class="col-md-9 col-sm-12 col-xs-12">
         <div class="row">
           <div class="col-xs-12">
-            <h3 class="sectionHeadingBold marginTop10 noBorder">Politics</h3>
+            <h3 class="sectionHeadingBold marginTop10 noBorder">Politics {{ dump(gimme.route) }}</h3>
           </div>
         </div>
 
         {# Setup list and pagination parameters #}
-            {% set defaultItemsPerPage, itemsPerPage, currentPage = 3, 3, app.request.get('page', 1) %}
+            {% set defaultItemsPerPage, itemsPerPage, currentPage = 9, 9, app.request.get('page', 1) %}
 
             {% set start = ((currentPage-1) * itemsPerPage) +1 %}
 
               {% if currentPage == 1 %}
-                  {% set itemsPerPage = 4 %}
+                  {% set itemsPerPage = 10 %}
                     {% set start = 0 %}
               {% endif %}
 
 
 
-            {# List all articles from route '/news' and limit them to `itemsPerPage` value starting from `start` value #}
+            {# List all articles from current route and limit them to `itemsPerPage` value starting from `start` value #}
             {% cache 'newsList'~app.environment~currentPage {time: 600} %}
-              {% gimmelist article from articles|start(start)|limit(itemsPerPage)|order('publishedAt', 'desc') with {'route':'/news'} %}
+              {% gimmelist article from articles|start(start)|limit(itemsPerPage) %}
 
 
             {% if loop.first and currentPage == 1 %}
