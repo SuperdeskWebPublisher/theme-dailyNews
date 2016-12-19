@@ -45,10 +45,9 @@
 
         <div class="topBar__links col-sm-7 col-md-7 col-xs-7">
           <ul>
-            <li><a href="#">Login/Register</a></li>
-            <li><a href="#">Language: English</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Other links</a></li>
+            {% gimmelist article from articles with {'route' : '/about' } %}
+            <li><a href="{{ url(article) }}">{{ article.title }}</a></li>
+            {% endgimmelist %}
           </ul>
         </div>
 
@@ -72,7 +71,7 @@
       <div class="row">
 
         <div class="verticalMiddle col-md-5 col-sm-5 col-xs-12">
-          <a class="header__logo" href="./"><img src="{{ asset('theme/img/logo.svg') }}"></a>
+          <a class="header__logo" href="{{ url('home') }}"><img src="{{ asset('theme/img/logo.svg') }}"></a>
         </div>
 
         <div class="header__search verticalMiddle col-sm-7 col-md-7 col-xs-12">

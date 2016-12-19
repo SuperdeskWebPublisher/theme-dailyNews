@@ -8,7 +8,7 @@
       <div class="col-md-9 col-sm-12 col-xs-12">
         <div class="row">
           <div class="col-xs-12">
-            <h3 class="sectionHeadingBold marginTop10 noBorder">Politics {{ dump(gimme.route) }}</h3>
+            <h3 class="sectionHeadingBold marginTop10 noBorder">Politics</h3>
           </div>
         </div>
 
@@ -26,7 +26,7 @@
 
             {# List all articles from current route and limit them to `itemsPerPage` value starting from `start` value #}
             {% cache 'newsList'~app.environment~currentPage {time: 600} %}
-              {% gimmelist article from articles|start(start)|limit(itemsPerPage) %}
+              {% gimmelist article from articles|start(start)|limit(itemsPerPage)|order('publishedAt','desc') %}
 
 
             {% if loop.first and currentPage == 1 %}
@@ -86,9 +86,6 @@
 
              {% endgimmelist %}
              {% endcache %}
-
-
-
 
         </div>
       </div>

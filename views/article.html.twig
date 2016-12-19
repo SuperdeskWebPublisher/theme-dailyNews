@@ -50,10 +50,24 @@
 
 					<div class="article__text marginTop30">
 						<p>{{ gimme.article.body|raw }}</p>
+
+						{#
+						<blockquote>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu enim in velit bibendum gravida nec et odio.</p>
+							<footer>
+								<cite>
+									<span>- Diane Long</span>
+								</cite>
+							</footer>
+						</blockquote>
+						#}
+
+						{#
 						<div class="article__entrefilet article__floatLeft">
 							<h3>Entrefilet</h3>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu enim in velit bibendum gravida nec et odtio. Cras congue, orci vitae eleifend congue, felis mi tincidunt risus, et lobortis turpis ex vel velit. Nullam pellentesque tempor magna a fermentum.</p>
 						</div>
+						#}
 					</div>
 
 				</article>
@@ -61,13 +75,11 @@
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
 
-
-
-						<h3 class="sectionHeadingBold marginTop30"><a href="{{url(gimme.article.route)}}">More from {{gimme.article.route.name}}</a></h3>
+						<h3 class="sectionHeadingBold marginTop30"><a href="{{url(gimme.article.route)}}">More from {{gimme.article.route.name|capitalize}}</a></h3>
 						<div class="row">
 							<div class="articleGrid col-md-6 col-sm-6 col-xs-12">
 
-								{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+								{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') %}
 									{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns'} %}
 								{% endgimmelist %}
 
@@ -75,7 +87,7 @@
 
 							<div class="articleListSmall col-md-6 col-sm-6 col-xs-12">
 
-								{% gimmelist article from articles|start(1)|limit(4)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+								{% gimmelist article from articles|start(1)|limit(4)|order('publishedAt','desc') %}
 									{% include 'partials/articleListSmall__item.html.twig'  %}
 								{% endgimmelist %}
 
