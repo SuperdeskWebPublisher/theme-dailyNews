@@ -70,16 +70,36 @@
 						#}
 					</div>
 
+					<div id="disqus_thread"></div>
+<script>
+// var disqus_config = function () {
+// this.page.url = {{ url(gimme.article) }};
+// this.page.identifier = {{ gimme.article.id }};
+// };
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//superdeskdailynews.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                
+
 				</article>
 
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
 
-						<h3 class="sectionHeadingBold marginTop30"><a href="{{url(gimme.article.route)}}">More from {{gimme.article.route.name|capitalize}}</a></h3>
+						<h3 class="sectionHeadingBold marginTop30"><a href="{{url(gimme.article.route)}}">More from {{ gimme.article.route.name|capitalize }}</a></h3>
 						<div class="row">
+
+							{% set currArt = gimme.article.id %}
+							<p>id: {{ currArt }}</p>
 							<div class="articleGrid col-md-6 col-sm-6 col-xs-12">
 
-								{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') %}
+								{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') if id != currArt %}
 									{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns'} %}
 								{% endgimmelist %}
 
@@ -121,16 +141,9 @@
 
 				{% include 'elements/most.html.twig' with {'class' : 'marginBottom30'} %}
 
-							<div class="ad hidden-xs marginTop30 marginBottom30">
-								<img src="{{ asset('theme/img/article_img/ad.png') }}">
-							</div>
+				{% container 'frontSidebar' %}
 
-							<div class="marginTop30 marginBottom30">
-								{% include 'elements/facebook.html.twig' %}
-							</div>
-
-							{% include 'elements/selectedComment.html.twig' with {'class' : 'marginTop30 marginBottom30'} %}
-
+        		{% endcontainer %}
 
 			</div>
 

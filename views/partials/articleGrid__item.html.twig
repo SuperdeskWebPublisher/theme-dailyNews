@@ -24,7 +24,7 @@
                     {{ article.lead|striptags|safeTruncate(160,"...") }}
                   {%endif%}</p>
                 <div class="articleMetadata">
-                  <span class="articleMetadata__byline">by <a href="#">{{article.metadata.byline}}</a></span>
+                  <span class="articleMetadata__byline">by <a href="{{ url(article) }}">{{article.metadata.byline}}</a></span>
                   <a class="articleMetadata__shares articleMetadata__info" href="#">240</a>
                   <a class="articleMetadata__comments articleMetadata__info" href="#">20</a>
                 </div>

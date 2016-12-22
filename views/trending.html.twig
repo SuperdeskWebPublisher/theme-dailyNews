@@ -8,7 +8,7 @@
       <div class="col-md-9 col-sm-12 col-xs-12">
         <div class="row">
           <div class="col-xs-12">
-            <h3 class="sectionHeadingBold marginTop10 noBorder">{{ gimme.route.name|capitalize }}</h3>
+            <h3 class="sectionHeadingBold marginTop10 noBorder">John Smith</h3>
           </div>
         </div>
 
@@ -18,30 +18,12 @@
             {% set start = ((currentPage-1) * itemsPerPage) +1 %}
 
               {% if currentPage == 1 %}
-                  {% set itemsPerPage = 10 %}
                     {% set start = 0 %}
               {% endif %}
 
-
-
             {# List all articles from current route and limit them to `itemsPerPage` value starting from `start` value #}
-            {% cache 'newsList'~app.environment~currentPage {time: 600} %}
-              {% gimmelist article from articles|start(start)|limit(itemsPerPage)|order('publishedAt','desc') %}
-
-
-            {% if loop.first and currentPage == 1 %}
-
-              {% cache 'newsArticle' {gen: article} %}
-
-              {% include 'partials/mainArticle.html.twig' with {'class' : ''} %}
-
-
-              {% endcache %}
-
-              <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
-                  <div class="articleGrid row">
-            {% else %}
+            {% cache 'trendingList'~app.environment~currentPage {time: 600} %}
+              {% gimmelist article from articles|start(start)|limit(itemsPerPage)|order('publishedAt','desc') if article.metadata.byline == "John Smith" %}
 
               {% if loop.first %}
 
@@ -51,19 +33,16 @@
 
               {% endif %}
 
-
-              {% cache 'newsArticle' {gen: article} %}
-
+              {% cache 'trendingArticle' {gen: article} %}
+              
               {% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--threeColumns col-md-4 col-sm-6 col-xs-12'} %}
 
-
               {% endcache %}
-            {% endif %}
+
                 {# Render pagination only at end of list #}
-                {% if loop.last  %}
+                {% if loop.last %}
                     </div>
                   </div>
-
 
                     {#
                         Use provided by default pagination template
@@ -94,14 +73,17 @@
 
         {% include 'elements/most.html.twig' with {'class' : 'marginBottom30'} %}
 
-        {% container 'frontSidebar' %}
+        <div class="ad hidden-xs marginTop30 marginBottom30">
+          <img src="{{asset('theme/img/article_img/ad.png')}}">
+        </div>
 
-        {% endcontainer %}
+        {% include 'elements/facebook.html.twig' with {'class' : 'marginBottom30'} %}
+
+        {% include 'elements/selectedComment.html.twig' with {'class' : 'marginBottom30 marginTop30'} %}
 
       </div>
     </div>
 
   </main>
-
 
 {% endblock %}

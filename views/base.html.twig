@@ -13,8 +13,8 @@
   <meta name="description" content="Superdesk Publisher is state of the art publishing system.">
   <meta name="keywords" content="Superdesk, Sourcefabric, open source, media, journalism">
 
- {#  <!-- RSS & Pingback -->
-  <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/en/static/rss/"> #}
+ <!-- RSS & Pingback -->
+  <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ url('rss') }}">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -53,10 +53,10 @@
 
         <div class="topBar__social col-sm-2 col-md-2 col-xs-2">
           <ul>
-            <li><a href="#"><img src="{{ asset('theme/img/social-fb.svg') }}"></a></li>
-            <li><a href="#"><img src="{{ asset('theme/img/social-tw.svg') }}"></a></li>
-            <li><a href="#"><img src="{{ asset('theme/img/social-yt.svg') }}"></a></li>
-            <li><a href="#"><img src="{{ asset('theme/img/social-rss.svg') }}"></a></li>
+            <li><a href="https://www.facebook.com/Superdesk/"><img src="{{ asset('theme/img/social-fb.svg') }}"></a></li>
+            <li><a href="https://twitter.com/Sourcefabric"><img src="{{ asset('theme/img/social-tw.svg') }}"></a></li>
+            <li><a href="https://www.youtube.com/user/Sourcefabric"><img src="{{ asset('theme/img/social-yt.svg') }}"></a></li>
+            <li><a href="{{ url('rss') }}"><img src="{{ asset('theme/img/social-rss.svg') }}"></a></li>
           </ul>
         </div>
 
@@ -75,10 +75,12 @@
         </div>
 
         <div class="header__search verticalMiddle col-sm-7 col-md-7 col-xs-12">
+        {#
           <form id="search" name="search_articles" method="GET" action="/search">
             <input type="text" name="q" placeholder="search" value="">
-            <button type="submit">Submit</button>
+            <button type="submit">Submit</button>           
           </form>
+        #}
         </div>
 
       </div>
@@ -96,16 +98,15 @@
   <div class="trendingTopics">
     <div class="container">
       <div class="okayNav-header">
-            <nav role="navigation" id="topics" class="okayNav">
-                <ul class="trendingTopics__items">
-            <li>Trending topics</li>
-            <li><a href="#">Turkey coup</a></li>
-            <li><a href="#">Rio 2016 Olympics</a></li>
-            <li><a href="#">Brexit</a></li>
-            <li><a href="#">US elections</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav role="navigation" id="topics" class="okayNav">
+          <ul class="trendingTopics__items">
+            <li>Trending authors</li>
+            <li><a href="{{ url('trending') }}">John Smith</a></li>
+            <li><a href="{{ url('trending') }}">George Langsamer</a></li>
+            <li><a href="{{ url('trending') }}">Jane Stockwriter</a></li>    
+          </ul>
+        </nav>
+      </div>
     </div>
   </div>
 
@@ -131,10 +132,10 @@
       <div class="footer__section col-sm-2 col-md-2 col-xs-12">
         <h4 class="footer__sectionHeadline">Social</h4>
         <ul>
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">Twitter</a></li>
-          <li><a href="#">Youtube</a></li>
-          <li><a href="#">Google+</a></li>
+          <li><a href="https://www.facebook.com/Superdesk/">Facebook</a></li>
+          <li><a href="https://twitter.com/Sourcefabric">Twitter</a></li>
+          <li><a href="https://www.youtube.com/user/Sourcefabric">Youtube</a></li>
+          <li><a href="https://plus.google.com/+SourcefabricOrgHQ">Google+</a></li>
         </ul>
       </div>
 
@@ -193,6 +194,7 @@ $('#topics').okayNav();
 
 });
 </script>
+<script id="dsq-count-scr" src="//superdeskdailynews.disqus.com/count.js" async></script>
 
   </body>
   </html>

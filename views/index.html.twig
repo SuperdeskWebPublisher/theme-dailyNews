@@ -26,13 +26,15 @@
 									{% include 'partials/articleListSmall__item.html.twig'  %}
 								{% endgimmelist %}
 
-							<a class="button" href="/news">View all</a>
+							{# <a class="button" href="/news">View all</a> #}
 
 						</div>
 
+						{% container 'frontLeftSidebar' %}
 						<div class="ad marginBottom30 hidden-xs">
 							<img src="{{ asset('theme/img/article_img/ad.png') }}">
 						</div>
+						{% endcontainer %}
 					</div>
 				</div>
 			</div>
@@ -40,6 +42,8 @@
 			<div class="col-xs-12 col-sm-12 col-md-3">
 
 				{% include 'elements/most.html.twig' with {'class' : 'marginBottom30'} %}
+
+				{% container 'frontSidebar' %}
 
 				<div class="ad hidden-xs marginTop30 marginBottom30">
 					<img src="{{ asset('theme/img/article_img/ad.png') }}">
@@ -51,6 +55,7 @@
 
 				{% include 'elements/selectedComment.html.twig' with {'class' : 'marginTop30 marginBottom30'} %}
 
+				{% endcontainer %}
 
 			</div>
 		</div>
