@@ -2,6 +2,16 @@
 
 {% block body %}
 
+	<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+    	<div class="slides"></div>
+    	<h3 class="title"></h3>
+    	<a class="prev">‹</a>
+    	<a class="next">›</a>
+    	<a class="close">×</a>
+    	<a class="play-pause"></a>
+    	<ol class="indicator"></ol>
+	</div>
+
 	<main class="container">
 		<div class="row">
 
@@ -68,7 +78,8 @@
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu enim in velit bibendum gravida nec et odtio. Cras congue, orci vitae eleifend congue, felis mi tincidunt risus, et lobortis turpis ex vel velit. Nullam pellentesque tempor magna a fermentum.</p>
 						</div>
 						#}
-					</div>
+
+					{% include 'partials/slideshow.html.twig' %}
 
 					<div id="disqus_thread"></div>
 <script>
@@ -92,7 +103,6 @@ s.setAttribute('data-timestamp', +new Date());
 						<div class="row">
 
 							{% set currArt = gimme.article.id %}
-							<p>id: {{ currArt }}</p>
 							<div class="articleGrid col-md-6 col-sm-6 col-xs-12">
 
 								{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') if id != currArt %}

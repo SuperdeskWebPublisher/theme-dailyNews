@@ -1,4 +1,8 @@
 /*injector*/
+@import url(../css/vendor/blueimp-gallery-indicator.css);
+@import url(../css/vendor/blueimp-gallery-video.css);
+@import url(../css/vendor/blueimp-gallery.css);
+@import url(../css/vendor/blueimp-gallery.min.css);
 @import url(../css/vendor/bootstrap.css);
 @import url(../css/vendor/okayNav-base.css);
 @import url(../css/vendor/okayNav-theme.css);
