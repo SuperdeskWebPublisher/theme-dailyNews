@@ -1,0 +1,34 @@
+<script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "mainEntityOfPage": "{{ url(gimme.article) }}",
+        "headline": "{{ object.title }}",
+        "datePublished": "{{ object.publishedAt|date('Y-m-d H:i:s') }}",
+        "dateModified": "{{ object.updatedAt|date('Y-m-d H:i:s') }}",
+        "description": "{{ object.lead }}",
+        "author": {
+          "@type": "Person",
+          "name": "{{ object.metadata.byline }}"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ asset('theme/img/logo.svg') }}",
+            "width": 150,
+            "height": 27
+          },
+          "name": "{{ tenant.organization.name }}"
+        }
+{% gimmelist media from articleMedia|limit(1) with {'article': article} %}{% if media.renditions is iterable %}{% for rendition in media.renditions %}{% if rendition.name == '770x515' %}
+        ,
+        "image": {
+          "@type": "ImageObject",
+          "url": "{{ url(rendition) }}",
+          "height": 930,
+          "width": 450
+        }
+{% endif %}{% endfor %}{% endif %}{% endgimmelist %}        
+      }
+    </script>

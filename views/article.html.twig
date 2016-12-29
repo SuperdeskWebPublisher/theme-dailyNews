@@ -2,6 +2,16 @@
 
 {% block body %}
 
+	<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+    	<div class="slides"></div>
+    	<h3 class="title"></h3>
+    	<a class="prev">‹</a>
+    	<a class="next">›</a>
+    	<a class="close">×</a>
+    	<a class="play-pause"></a>
+    	<ol class="indicator"></ol>
+	</div>
+
 	<main class="container">
 		<div class="row">
 
@@ -34,30 +44,68 @@
 					</div>
 
 					<figure class="article__image">
-						<a href="#"><img src="{{asset('theme/img/article_img/930x450.png')}}"></a>
-						<figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</figcaption>
+
+{% gimmelist media from articleMedia|limit(1) with {'article': article} %}
+  {% if media.renditions is iterable %}   
+    {% for rendition in media.renditions %} 
+      {% if rendition.name == '770x515' %} 
+        <img src="{{ url(rendition) }}" width="930" height="450" }}" />
+        <figcaption>{{ media.body }}</figcaption>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endgimmelist %}
+
 					</figure>
 
 					<div class="article__text marginTop30">
-						{{ gimme.article.body|raw }}
+						<p>{{ gimme.article.body|raw }}</p>
+
+						{#
+						<blockquote>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu enim in velit bibendum gravida nec et odio.</p>
+							<footer>
+								<cite>
+									<span>- Diane Long</span>
+								</cite>
+							</footer>
+						</blockquote>
+						#}
+
+						{#
 						<div class="article__entrefilet article__floatLeft">
 							<h3>Entrefilet</h3>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu enim in velit bibendum gravida nec et odtio. Cras congue, orci vitae eleifend congue, felis mi tincidunt risus, et lobortis turpis ex vel velit. Nullam pellentesque tempor magna a fermentum.</p>
 						</div>
-					</div>
+						#}
+
+					{% include 'partials/slideshow.html.twig' %}
+
+					<div id="disqus_thread"></div>
+<script>
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = '//superdeskdailynews.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                
 
 				</article>
 
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
 
-
-
-						<h3 class="sectionHeadingBold marginTop30"><a href="{{url(gimme.article.route)}}">More from {{gimme.article.route.name}}</a></h3>
+						<h3 class="sectionHeadingBold marginTop30"><a href="{{url(gimme.article.route)}}">More from {{ gimme.article.route.name|capitalize }}</a></h3>
 						<div class="row">
+
+							{% set currArt = gimme.article.id %}
 							<div class="articleGrid col-md-6 col-sm-6 col-xs-12">
 
-								{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+								{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') if id != currArt %}
 									{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns'} %}
 								{% endgimmelist %}
 
@@ -65,7 +113,7 @@
 
 							<div class="articleListSmall col-md-6 col-sm-6 col-xs-12">
 
-								{% gimmelist article from articles|start(1)|limit(4)|order('publishedAt', 'desc') with {'route': '/news'}  %}
+								{% gimmelist article from articles|start(1)|limit(4)|order('publishedAt','desc') %}
 									{% include 'partials/articleListSmall__item.html.twig'  %}
 								{% endgimmelist %}
 
@@ -99,16 +147,9 @@
 
 				{% include 'elements/most.html.twig' with {'class' : 'marginBottom30'} %}
 
-							<div class="ad hidden-xs marginTop30 marginBottom30">
-								<img src="{{ asset('theme/img/article_img/ad.png') }}">
-							</div>
+				{% container 'frontSidebar' %}
 
-							<div class="marginTop30 marginBottom30">
-								{% include 'elements/facebook.html.twig' %}
-							</div>
-
-							{% include 'elements/selectedComment.html.twig' with {'class' : 'marginTop30 marginBottom30'} %}
-
+        		{% endcontainer %}
 
 			</div>
 

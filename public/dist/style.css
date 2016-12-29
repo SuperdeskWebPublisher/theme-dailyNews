@@ -1,4 +1,8 @@
 /*injector*/
+@import url(../css/vendor/blueimp-gallery-indicator.css);
+@import url(../css/vendor/blueimp-gallery-video.css);
+@import url(../css/vendor/blueimp-gallery.css);
+@import url(../css/vendor/blueimp-gallery.min.css);
 @import url(../css/vendor/bootstrap.css);
 @import url(../css/vendor/okayNav-base.css);
 @import url(../css/vendor/okayNav-theme.css);
@@ -817,7 +821,9 @@ input {
       font-weight: 900;
       display: inline-block;
       margin-right: 40px; }
-      .navigation ul li a:hover {
+      .navigation ul li.current a {
+        color: #00a9e1; }
+      .navigation ul li.current a:hover {
         color: #00a9e1; }
 
 .opinions .opinionsItem {

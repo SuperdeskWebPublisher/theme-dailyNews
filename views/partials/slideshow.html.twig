@@ -1,0 +1,19 @@
+{% set imgCounter = 0 %}
+
+						<div id="links">
+{% gimmelist media from articleMedia with {'article': article} %}
+  {% set linkThumb = null %}{% set linkFull = null %}
+  {% if media.renditions is iterable %}   
+    {% for rendition in media.renditions %} 
+      {% if rendition.name == '400x240' %}{% set linkThumb = url(rendition) %}{% endif %}
+      {% if rendition.name == '770x515' %}{% set linkFull = url(rendition) %}{% set imgCaption = media.body %}{% endif %}
+    {% endfor %}
+    {% if linkThumb and linkFull %}
+      {% set imgCounter = imgCounter + 1 %}{% if imgCounter == 1 %}<h2>Article Gallery</h2>{% endif %}
+      <a href="{{ linkFull }}" title="{{ media.body }}" data-gallery><img src="{{ linkThumb }}" alt="{{ media.body }}" width="200" height="120"></a>
+      
+    {% endif %}
+  {% endif %}
+{% endgimmelist %}					
+						</div>
+					</div>

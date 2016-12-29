@@ -1,13 +1,23 @@
 <article class="mainArticle {{class}}">
 
             <figure class="mainArticle__image {% if image =='small' %}mainArticle__image--small{% endif %} ">
+
+{% gimmelist media from articleMedia|limit(1) with {'article': article} %}
+  {% if media.renditions is iterable %}   
+    {% for rendition in media.renditions %} 
+      {% if rendition.name == '770x515' %} 
               <a href="{{ url(article) }}">
                 {% if image=='small' %}
-                  <img src="{{ asset('theme/img/article_img/610x380.png') }}">
+                  <img src="{{ url(rendition) }}" width="610" height="380" }}">
                 {% else %}
-                  <img src="{{ asset('theme/img/article_img/930x450.png') }}">
+                  <img src="{{ url(rendition) }}" width="930" height="450" }}">
                 {% endif %}
               </a>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endgimmelist %}
+
             </figure>
           <div class="mainArticle__text ">
             <a href="{{ url(article) }}">

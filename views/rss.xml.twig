@@ -1,0 +1,48 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+<channel>
+<title>Superdesk.org</title>
+<link>https://superdesk.org</link>
+<description>Superdesk is your newsroom expressed in digital form. It handles content creation, production, distribution, archiving and curation. It is modular by design and extended continuously via development partnerships with commercial news organisations worldwide.</description>
+<language>en</language>
+<copyright>Copyright 2017, Superdesk.org</copyright>
+<lastBuildDate>{{ 'now'|date("D, d.m.Y H:i:s") }}+0100</lastBuildDate>
+<ttl>60</ttl>
+<generator>Superdesk Publisher</generator>
+<image>
+<url>{{ asset('theme/img/logo-superdesk.png') }}</url>
+<title>Superdesk</title>
+<link>https://superdesk.org</link>
+<width>172</width>
+<height>55</height>
+</image>
+<atom:link href="{{ url('rss') }}" rel="self" type="application/rss+xml" />
+{% gimmelist article from articles|limit(20) with {'route': '/news'} %}
+<item>
+<title>{{ article.title|escape }}</title>
+<link>{{ url(article) }}</link>
+
+<description>
+{% gimmelist media from articleMedia|limit(1) with {'article': article} %}
+  {% if media.renditions is iterable %}   
+    {% for rendition in media.renditions %} 
+      {% if rendition.name == '600x300' %} 
+        &lt;img src="{{ url(rendition) }}" width="600" height="300" alt="{{ media.body }}" hspace="5" /&gt;
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endgimmelist %}
+    {{ article.lead|striptags|safeTruncate(400,'...') }}
+&lt;br clear="all"&gt;
+</description>
+<category domain="{{ url('news') }}">News</category>
+{% if gimme.article.metadata.byline %}
+<atom:author><atom:name>{{ gimme.article.metadata.byline }}</atom:name></atom:author>
+{% else %}
+<atom:author><atom:name>Sourcefabric</atom:name></atom:author>
+{% endif %}
+<pubDate>{{ gimme.article.publishedAt|date("D, d.m.Y H:i:s") }}+0100</pubDate>
+<guid isPermaLink="false">{{ article.id }}</guid>
+</item>
+{% endgimmelist %}
+</channel>
+</rss>
