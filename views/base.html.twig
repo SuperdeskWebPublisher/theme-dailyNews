@@ -1,4 +1,4 @@
-{% set version = '1478179342852' %}
+{% set version = '1483972409221' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,8 +22,12 @@
 
   <link rel="stylesheet" href="{{ asset('theme/dist/style.css') }}" />
 
+
+
+
 </head>
 <body>
+
   <div id="fb-root"></div>
   <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -40,7 +44,7 @@
       <div class="row">
 
         <div class="topBar__weather col-sm-3 col-md-3 col-xs-3">
-          <p>22° Belgrade</p>
+          <p><img src="" class="weather-icon" alt="Weather Icon" /><span class="weather-temperature"></span>, <span class="weather-place"></span></p>
         </div>
 
         <div class="topBar__links col-sm-7 col-md-7 col-xs-7">
@@ -162,7 +166,6 @@
   </div>
 </footer>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="{{ asset('theme/dist/all.js') }}"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -195,7 +198,6 @@ $('#topics').okayNav();
 });
 </script>
 <script id="dsq-count-scr" src="//superdeskdailynews.disqus.com/count.js" async></script>
-<script src="{{ asset('theme/js/vendor/blueimp-gallery.min.js') }}"></script>
 <script type="text/javascript">
 document.getElementById('links').onclick = function (event) {
     event = event || window.event;
@@ -206,6 +208,29 @@ document.getElementById('links').onclick = function (event) {
     blueimp.Gallery(links, options);
 };
 </script> 
+
+  <script>
+    /* Weather script: https://github.com/michael-lynch/open-weather */
+    $(function() {
+      $('.weather-temperature').openWeather({
+        key: 'ffccf64d91c2144d8018e8c5fc4a2e0d',
+        city: 'Belgrade',
+        descriptionTarget: '.weather-description',
+        minTemperatureTarget: '.weather-min-temperature',
+        maxTemperatureTarget: '.weather-max-temperature',
+        placeTarget: '.weather-place',
+        iconTarget: '.weather-icon',
+        success: function() {
+          $('.topBar__weather').show();
+        },
+        error: function() {
+          console.log("These aren't the droids you're looking for.");
+        }
+      });
+      
+    });
+  
+  </script>
 
   </body>
   </html>
