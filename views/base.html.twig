@@ -1,4 +1,4 @@
-{% set version = '1483972409221' %}
+{% set version = '1484063719379' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +13,8 @@
   <meta name="description" content="Superdesk Publisher is state of the art publishing system.">
   <meta name="keywords" content="Superdesk, Sourcefabric, open source, media, journalism">
 
+  <meta name="google-site-verification" content="uJB4D5iTxa0pKz2QP1XiHFwa3lFd2F0oTcHd-bHpU2U" />
+
  <!-- RSS & Pingback -->
   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ url('rss') }}">
 
@@ -21,8 +23,6 @@
   <link rel="shortcut icon" href="{{ asset('theme/img/favicon.ico') }}">
 
   <link rel="stylesheet" href="{{ asset('theme/dist/style.css') }}" />
-
-
 
 
 </head>
@@ -37,7 +37,15 @@
   fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
 
-
+  <script>(function() {
+    var cx = '001959388472599317396:-zwezp41wak';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();</script>
 
   <div class="topBar">
     <div class="container">
@@ -79,12 +87,13 @@
         </div>
 
         <div class="header__search verticalMiddle col-sm-7 col-md-7 col-xs-12">
-        {#
-          <form id="search" name="search_articles" method="GET" action="/search">
+        
+          <!--form id="search" name="search_articles" method="GET" action="/search">
             <input type="text" name="q" placeholder="search" value="">
             <button type="submit">Submit</button>           
-          </form>
-        #}
+          </form-->
+        
+        <gcse:searchbox-only></gcse:searchbox-only>
         </div>
 
       </div>
@@ -113,7 +122,6 @@
       </div>
     </div>
   </div>
-
 
 {% block body %}{% endblock %}
 
@@ -159,8 +167,6 @@
         </div>
 
       </div>
-
-
 
     </div>
   </div>

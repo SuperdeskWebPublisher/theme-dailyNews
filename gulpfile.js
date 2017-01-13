@@ -28,49 +28,51 @@ gulp.task('version', function () {
 // service worker generator
 gulp.task('sw', function(callback) {
   var packageJson = require('./package.json');
-  var bundleUrl = '/bundles/_themes/swp/default-theme@fztw10/';
+  var bundleUrl = '/public/';
 
   swPrecache.write(
     'public/sw.js',
     {
       cacheId: packageJson.name,
+      // uncomment if you want to control content caching by yourself or have custom offline page
+      // importScripts: ['/public/sw-contentCaching.js'],
 
-      // runtimeCaching: [{
-      //   urlPattern: /\/content\/articles\//,
-      //   handler: 'fastest',
-      //   options: {
-      //     cache: {
-      //       maxEntries: 100,
-      //       name: 'articles-cache'
-      //     }
-      //   }
-      // },
-      // {
-      //   urlPattern: /\/media\//,
-      //   handler: 'cacheFirst',
-      //   options: {
-      //     cache: {
-      //       maxEntries: 50,
-      //       name: 'media-cache'
-      //     }
-      //   }
-      // }
-      // ],
-
-      // dynamicUrlToDependencies: {
-      //       '/': [
-      //         'views/base.html.twig'
-      //       ]
-      //     },
-      staticFileGlobs: ['/','public/dist/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}','public/img/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}', 'public/fonts/**/*.{svg,eot,ttf,woff}'],
+      //runtime caching.
+      runtimeCaching: [{
+        // matches googleapis cdn's. Fonts, jquery etc.
+        urlPattern: /(googleapis|gstatic)/,
+        handler: 'cacheFirst',
+        options: {
+          cache: {
+            maxEntries: 200,
+            name: 'googleapis-cache'
+          }
+        }
+      },
+      {
+        // matches media content from publisher. Images etc.
+        urlPattern: /(media)/,
+        handler: 'cacheFirst',
+        options: {
+          cache: {
+            maxEntries: 50,
+            name: 'media-cache'
+          }
+        }
+      }
+      ],
+      //assets precache
+      staticFileGlobs: ['public/dist/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}','public/img/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}', 'public/fonts/**/*.{svg,eot,ttf,woff}'],
       stripPrefixMulti: {
         'public/': bundleUrl
       }
+
     },
     callback
 
     );
 });
+
 
 
 gulp.task('sass', function(){
@@ -95,7 +97,7 @@ gulp.task('sass', function(){
 
 
 gulp.task('js',function(){
- return gulp.src(['public/js/vendor/**/*.js','public/js/app/**/*.js'])
+ return gulp.src(['public/js/vendor/*.js','public/js/scripts/*.js'])
      .pipe(sourcemaps.init())
      .pipe(concat('all.js'))
      .pipe(sourcemaps.write())

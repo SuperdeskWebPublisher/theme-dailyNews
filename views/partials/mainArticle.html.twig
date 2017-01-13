@@ -8,9 +8,9 @@
       {% if rendition.name == '770x515' %} 
               <a href="{{ url(article) }}">
                 {% if image=='small' %}
-                  <img src="{{ url(rendition) }}" width="610" height="380" }}">
+                  <img src="{{ path(rendition) }}" width="610" height="380" }}">
                 {% else %}
-                  <img src="{{ url(rendition) }}" width="930" height="450" }}">
+                  <img src="{{ path(rendition) }}" width="930" height="450" }}">
                 {% endif %}
               </a>
       {% endif %}

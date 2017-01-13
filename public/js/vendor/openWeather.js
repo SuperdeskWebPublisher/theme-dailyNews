@@ -240,7 +240,7 @@ Licensed under the MIT license
 					} else {
 
 						// define icon URL using default icon
-						var iconURL = 'http://openweathermap.org/img/w/'+data.weather[0].icon+'.png';
+						var iconURL = '//openweathermap.org/img/w/'+data.weather[0].icon+'.png';
 					}
 
 					// set iconTarget src attribute as iconURL
