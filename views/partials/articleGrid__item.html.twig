@@ -6,7 +6,7 @@
   {% if media.renditions is iterable %}   
     {% for rendition in media.renditions %} 
       {% if rendition.name == '478x326' %}  
-                    <img src="{{ url(rendition) }}" alt="{{ media.body }}" width="290" height="180" />
+                    <img src="{{ path(rendition) }}" alt="{{ media.body }}" width="290" height="180" />
       {% endif %}
     {% endfor %}
   {% endif %}

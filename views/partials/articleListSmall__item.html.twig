@@ -5,7 +5,7 @@
     {% for rendition in media.renditions %} 
       {% if rendition.name == '478x326' %}  
                 <a class="articleListSmall__image" href="{{ url(article) }}">
-                <img src="{{ url(rendition) }}" alt="{{ media.body }}" width="90" /></a>
+                <img src="{{ path(rendition) }}" alt="{{ media.body }}" width="90" /></a>
       {% endif %}
     {% endfor %}
   {% endif %}
