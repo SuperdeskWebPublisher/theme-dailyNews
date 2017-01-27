@@ -23,7 +23,7 @@
 
             {# List all articles from current route and limit them to `itemsPerPage` value starting from `start` value #}
             {% cache 'trendingList'~app.environment~currentPage {time: 600} %}
-              {% gimmelist article from articles|start(start)|limit(itemsPerPage)|order('publishedAt','desc') if article.metadata.byline == "John Smith" %}
+              {% gimmelist article from articles|start(start)|limit(itemsPerPage)|order('publishedAt','desc') with {author: ["John Smith"]} %}
 
               {% if loop.first %}
 

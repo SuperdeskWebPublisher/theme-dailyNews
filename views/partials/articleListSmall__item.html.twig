@@ -1,15 +1,28 @@
 <article class="articleListSmall__item">
 
+{# this is temporary logic to ensure theme uses existing rendtions if appropriate sized crops are not available #}
+
+{% set imgCaption = "" %}
+{% set rend478 = "/public/img/article_img/610x380.png" %}
+{% set rend610 = "" %}
+
 {% gimmelist media from articleMedia|limit(1) with {'article': article} %}
+{% set imgCaption = media.body %}
   {% if media.renditions is iterable %}   
     {% for rendition in media.renditions %} 
       {% if rendition.name == '478x326' %}  
-                <a class="articleListSmall__image" href="{{ url(article) }}">
-                <img src="{{ path(rendition) }}" alt="{{ media.body }}" width="90" /></a>
+        {% set rend478 = path(rendition) %}     
       {% endif %}
+      {% if rendition.name == '610x380' %}  
+        {% set rend610 = path(rendition) %}     
+      {% endif %}      
     {% endfor %}
   {% endif %}
 {% endgimmelist %}
+
+{% if rend610 == "" %}{% set rend610 = rend478 %}{% endif %}
+
+                <a class="articleListSmall__image" href="{{ url(article) }}"><img src="{{ rend610 }}" alt="{{ imgCaption }}" width="90" /></a>
 
                 <h4 class="articleListSmall__headline"><a href="{{ url(article) }}">{{ article.title }}</a></h4>
                 <div class="articleMetadata">

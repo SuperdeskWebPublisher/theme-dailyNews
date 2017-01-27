@@ -34,7 +34,7 @@ Available variables:
       {% gimmelist media from articleMedia|limit(1) with {'article': gimme.article} %}
       {% if media.renditions is iterable %}
           {% for rendition in media.renditions %}
-              {% if rendition.name == '478x326' %}
+              {% if rendition.name == '770x515' %}
                 <amp-img src="{{ path(rendition) }}" alt="{{ media.body }}" class="mainImg"></amp-img>
               {% endif %}
           {% endfor %}
