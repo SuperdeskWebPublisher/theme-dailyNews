@@ -1,4 +1,4 @@
-{% set version = '1485515597443' %}
+{% set version = '1485520530229' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +21,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="shortcut icon" href="{{ asset('theme/img/favicon.ico') }}">
+
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Source+Sans+Pro:300,400,600,700&amp;subset=latin-ext" rel="stylesheet">
 
   <link rel="stylesheet" href="/public/dist/style.css" />
 
@@ -162,7 +164,7 @@
         </div>
 
         <div class="footer__text">
-          <p>© 2016 Sourcefabric All Rights Reserved <br>
+          <p>© 2017 Sourcefabric All Rights Reserved <br>
           <a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></p>
         </div>
 
@@ -226,7 +228,7 @@ document.getElementById('links').onclick = function (event) {
         maxTemperatureTarget: '.weather-max-temperature',
         placeTarget: '.weather-place',
         iconTarget: '.weather-icon',
-        customIcons: '/public/img/icons/weather/',
+        customIcons: '{{ asset('/public/img/icons/weather/') }}',
         success: function() {
           $('.topBar__weather').show();
         },
