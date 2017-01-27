@@ -5,8 +5,8 @@
   {% set linkThumb = null %}{% set linkFull = null %}
   {% if media.renditions is iterable %}   
     {% for rendition in media.renditions %} 
-      {% if rendition.name == '400x240' %}{% set linkThumb = path(rendition) %}{% endif %}
-      {% if rendition.name == '770x515' %}{% set linkFull = path(rendition) %}{% set imgCaption = media.body %}{% endif %}
+      {% if rendition.name == '610x380' %}{% set linkThumb = path(rendition) %}{% endif %}
+      {% if rendition.name == '930x450' %}{% set linkFull = path(rendition) %}{% set imgCaption = media.body %}{% endif %}
     {% endfor %}
     {% if linkThumb and linkFull %}
       {% set imgCounter = imgCounter + 1 %}{% if imgCounter == 1 %}<h2>Article Gallery</h2>{% endif %}

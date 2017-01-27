@@ -2,21 +2,40 @@
 
             <figure class="mainArticle__image {% if image =='small' %}mainArticle__image--small{% endif %} ">
 
+{# this is temporary logic to ensure theme uses existing rendtions if appropriate sized crops are not available #}
+
+{% set imgCaption = "" %}
+{% set rend770 = "/public/img/article_img/1250x600.png" %}
+{% set rend610 = "" %}
+{% set rend930 = "" %}
+
 {% gimmelist media from articleMedia|limit(1) with {'article': article} %}
+{% set imgCaption = media.body %}
   {% if media.renditions is iterable %}   
     {% for rendition in media.renditions %} 
       {% if rendition.name == '770x515' %} 
-              <a href="{{ url(article) }}">
-                {% if image=='small' %}
-                  <img src="{{ path(rendition) }}" width="610" height="380" }}">
-                {% else %}
-                  <img src="{{ path(rendition) }}" width="930" height="450" }}">
-                {% endif %}
-              </a>
+        {% set rend770 = path(rendition) %}
       {% endif %}
+      {% if rendition.name == '610x380' %} 
+        {% set rend610 = path(rendition) %}
+      {% endif %}   
+      {% if rendition.name == '930x450' %} 
+        {% set rend930 = path(rendition) %}
+      {% endif %}         
     {% endfor %}
   {% endif %}
 {% endgimmelist %}
+
+{% if rend610 == "" %}{% set rend610 = rend770 %}{% endif %}
+{% if rend930 == "" %}{% set rend930 = rend770 %}{% endif %}
+
+              <a href="{{ url(article) }}">
+                {% if image=='small' %}
+                  <img src="{{ rend610 }}" alt="{{ imgCaption }}" width="610" height="380" }}">
+                {% else %}
+                  <img src="{{ rend930 }}" alt="{{ imgCaption }}" width="930" height="450" }}">
+                {% endif %}
+              </a>
 
             </figure>
           <div class="mainArticle__text ">

@@ -1,4 +1,4 @@
-{% set version = '1484063719379' %}
+{% set version = '1485515597443' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -226,6 +226,7 @@ document.getElementById('links').onclick = function (event) {
         maxTemperatureTarget: '.weather-max-temperature',
         placeTarget: '.weather-place',
         iconTarget: '.weather-icon',
+        customIcons: '/public/img/icons/weather/',
         success: function() {
           $('.topBar__weather').show();
         },

@@ -45,16 +45,30 @@
 
 					<figure class="article__image">
 
+{# this is temporary logic to ensure theme uses existing rendtions if appropriate sized crops are not available #}
+
+{% set imgCaption = "" %}
+{% set rend770 = "/public/img/article_img/1250x600.png" %}
+{% set rend930 = "" %}
+
 {% gimmelist media from articleMedia|limit(1) with {'article': article} %}
+{% set imgCaption = media.body %}
   {% if media.renditions is iterable %}   
     {% for rendition in media.renditions %} 
       {% if rendition.name == '770x515' %} 
-        <img src="{{ path(rendition) }}" width="930" height="450" }}" />
-        <figcaption>{{ media.body }}</figcaption>
+        {% set rend770 = path(rendition) %}
       {% endif %}
+      {% if rendition.name == '930x450' %} 
+        {% set rend930 = path(rendition) %}
+      {% endif %}         
     {% endfor %}
   {% endif %}
 {% endgimmelist %}
+
+{% if rend930 == "" %}{% set rend930 = rend770 %}{% endif %}
+
+        <img src="{{ rend930 }}" alt="{{ imgCaption }}" width="930" height="450" }}" />
+        <figcaption>{{ imgCaption }}</figcaption>
 
 					</figure>
 
