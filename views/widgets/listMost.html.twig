@@ -1,0 +1,10 @@
+{% cache 'contentlist' ~ contentList.id { time: contentList.cacheLifeTime ?: 0 } %}
+    {% for item in contentList.items %}
+    
+    <article class="accordion__sectionItem">
+        <h4 class="accordion__sectionHeadline"><a href="{{ item.content.route.staticPrefix }}/{{ item.content.slug }}">{{ item.content.title }}</a></h4>
+        <span class="accordion__sectionCount">120.406 views</span>
+    </article>
+
+    {% endfor %}
+{% endcache %}
