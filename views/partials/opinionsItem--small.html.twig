@@ -1,13 +1,13 @@
-<article class="opinionsItem opinionsItem--small {{class}}">
-            <a class="opinionsItem__image opinionsItem__image--small" href="{{url(article)}}">
+<article class="opinionsItem opinionsItem--small {{ class }}">
+            <a class="opinionsItem__image opinionsItem__image--small" href="{{ url(article) }}">
               <figure>
                 <img src="{{ asset('theme/img/article_img/140x140.png') }}">
               </figure>
             </a>
             <div class="articleMetadata">
-              <span class="articleMetadata__byline"><a href="{{url(article)}}">{{article.metadata.byline}}</a></span>
+              <span class="articleMetadata__byline"><a href="{{url(article)}}">{{ article.metadata.byline }}</a></span>
             </div>
-            <a href="{{url(article)}}">
-              <h3 class="opinionsItem__headline opinionsItem__headline--small">{{article.title}}</h3>
+            <a href="{{ url(article) }}">
+              <h3 class="opinionsItem__headline opinionsItem__headline--small">{{ article.title }}</h3>
             </a>
           </article>
