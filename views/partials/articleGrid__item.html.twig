@@ -1,36 +1,38 @@
-<article class="articleGrid__item {{ class }}">
-                <a class="articleGrid__image articleGrid__image--smallMobile" href="{{ url(article) }}">
-                  <figure>
-
 {% set imgCaption = "Default image" %}
 {% set rend610 = "/public/img/article_img/610x380.png" %}
 
-{% gimmelist media from articleMedia|limit(1) with {'article': article} %}
-{% set imgCaption = media.body %}
-  {% if media.renditions is iterable %}   
-    {% for rendition in media.renditions %} 
-      {% if rendition.name == '610x380' %}  
-        {% set rend610 = path(rendition) %}     
-      {% endif %}      
-    {% endfor %}
-  {% endif %}
-{% endgimmelist %}
+{% if article.featureMedia %}
+  {% gimme rendition with { 'media': article.featureMedia, 'name': '610x380' } %}
+    {% set rend610 = path(rendition) %}
+    {% set imgCaption = article.featureMedia.description %}
+  {% endgimme %}
+{% else %}
+  {% gimmelist media from articleMedia|limit(1) with {'article': article} %}
+    {% set imgCaption = media.body %}
+    {% gimme rendition with { media: media, 'name': '610x380' } %}
+         {% set rend610 = path(rendition) %}
+    {% endgimme %}
+  {% endgimmelist %}
+{% endif %}
 
-                    <img src="{{ rend610 }}" alt="{{ imgCaption }}" width="290" height="180" />
-                  </figure>
-                </a>
-                <a href="{{ url(article) }}">
-                  <span class="articleGrid__kicker">Lorem ipsum</span>
-                  <h3 class="articleGrid__headline">{{ article.title }}</h3>
-                </a>
-                <p class="articleGrid__text">{% if foo is empty %}
-                    {{ article.body|striptags|safeTruncate(160,"...") }}
-                  {%else%}
-                    {{ article.lead|striptags|safeTruncate(160,"...") }}
-                  {%endif%}</p>
-                <div class="articleMetadata">
-                  <span class="articleMetadata__byline">by <a href="{{ url(article) }}">{{article.metadata.byline}}</a></span>
-                  <a class="articleMetadata__shares articleMetadata__info" href="#">240</a>
-                  <a class="articleMetadata__comments articleMetadata__info" href="#">20</a>
-                </div>
-              </article>
+<article class="articleGrid__item {{ class }}">
+  <a class="articleGrid__image articleGrid__image--smallMobile" href="{{ url(article) }}">
+    <figure>
+      <img src="{{ rend610 }}" alt="{{ imgCaption }}" />
+    </figure>
+  </a>
+  <a href="{{ url(article) }}">
+    <span class="articleGrid__kicker">Lorem ipsum</span>
+    <h3 class="articleGrid__headline">{{ article.title }}</h3>
+  </a>
+  <p class="articleGrid__text">{% if foo is empty %}
+      {{ article.body|striptags|safeTruncate(160,"...") }}
+    {%else%}
+      {{ article.lead|striptags|safeTruncate(160,"...") }}
+    {%endif%}</p>
+  <div class="articleMetadata">
+    <span class="articleMetadata__byline">by <a href="{{ url(article) }}">{{article.metadata.byline}}</a></span>
+    <a class="articleMetadata__shares articleMetadata__info" href="#">240</a>
+    <a class="articleMetadata__comments articleMetadata__info" href="#">20</a>
+  </div>
+</article>
