@@ -43,10 +43,15 @@
 						</span>
 					</div>
 
-					<figure class="article__image">
+					{% set imgCaption = "Default image" %}
+					{% set rend1250 = "/public/img/article_img/1250x600.png" %}
 
-{% set imgCaption = "Default image" %}
-{% set rend1250 = "/public/img/article_img/1250x600.png" %}
+					{% if gimme.article.featureMedia %}
+					  {% gimme rendition with { 'media': gimme.article.featureMedia, 'name': '1250x600', 'fallback': 'original' } %}
+					    {% set rend1250 = path(rendition) %}
+					    {% set imgCaption = article.featureMedia.description %}
+					  {% endgimme %}
+					{% endif %}
 
 {% if gimme.article.featureMedia %}
 
@@ -100,7 +105,7 @@
 					<div id="disqus_thread"></div>
 <script>
 
-(function() { 
+(function() {
 var d = document, s = d.createElement('script');
 s.src = '//superdeskdailynews.disqus.com/embed.js';
 s.setAttribute('data-timestamp', +new Date());
@@ -108,7 +113,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                                
+
 
 				</article>
 

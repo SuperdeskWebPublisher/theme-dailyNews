@@ -128,11 +128,11 @@
 		{% set rend1250 = "/public/img/article_img/1250x600.png" %}
 		{% gimmelist media from articleMedia|limit(1) with {'article': article} %}
 		{% set imgCaption = media.body %}
-  			{% if media.renditions is iterable %}   
-    			{% for rendition in media.renditions %}   
-      				{% if rendition.name == '1250x600' %} 
+  			{% if media.renditions is iterable %}
+    			{% for rendition in media.renditions %}
+      				{% if rendition.name == '1250x600' %}
         				{% set rend1250 = path(rendition) %}
-      				{% endif %}         
+      				{% endif %}
     			{% endfor %}
   			{% endif %}
 		{% endgimmelist %}

@@ -6,25 +6,31 @@
 {% set rend610 = "/public/img/article_img/610x380.png" %}
 {% set rend1250 = "/public/img/article_img/1250x600.png" %}
 
-{% gimmelist media from articleMedia|limit(1) with {'article': article} %}
-{% set imgCaption = media.body %}
-  {% if media.renditions is iterable %}   
-    {% for rendition in media.renditions %} 
-      {% if rendition.name == '610x380' %} 
-        {% set rend610 = path(rendition) %}
-      {% endif %}   
-      {% if rendition.name == '1250x600' %} 
-        {% set rend1250 = path(rendition) %}
-      {% endif %}         
-    {% endfor %}
+  {% if article.featureMedia %}
+    {% gimme rendition with { 'media': article.featureMedia, 'name': '610x380' } %}
+      {% set rend610 = path(rendition) %}
+      {% set imgCaption = article.featureMedia.description %}
+    {% endgimme %}
+    {% gimme rendition with { 'media': article.featureMedia, 'name': '1250x600' } %}
+      {% set rend1250 = path(rendition) %}
+    {% endgimme %}
+  {% else %}
+    {% gimmelist media from articleMedia|limit(1) with {'article': article} %}
+      {% set imgCaption = media.body %}
+      {% gimme rendition with { media: media, 'name': '610x380' } %}
+           {% set rend610 = path(rendition) %}
+      {% endgimme %}
+      {% gimme rendition with {media: media,  'name': '1250x600' } %}
+           {% set rend1250 = path(rendition) %}
+      {% endgimme %}
+    {% endgimmelist %}
   {% endif %}
-{% endgimmelist %}
 
               <a href="{{ url(article) }}">
                 {% if image=='small' %}
-                  <img src="{{ rend610 }}" alt="{{ imgCaption }}" width="610" height="380" }}">
+                  <img src="{{ rend610 }}" alt="{{ imgCaption }}"  }}">
                 {% else %}
-                  <img src="{{ rend1250 }}" alt="{{ imgCaption }}" width="930" height="450" }}">
+                  <img src="{{ rend1250 }}" alt="{{ imgCaption }}" }}">
                 {% endif %}
               </a>
 
