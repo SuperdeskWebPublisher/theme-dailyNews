@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-md-9 col-sm-12 col-xs-12">
 				{% cache 'frontTop' { time:600 } %}
-				{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') ignoreContext ['scitech'] %}
+				{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') %}
 					{% include 'partials/mainArticle.html.twig' %}
 				{% endgimmelist %}
 				<div class="row">
