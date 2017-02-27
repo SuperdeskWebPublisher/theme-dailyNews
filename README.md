@@ -18,10 +18,10 @@ To correclty set-up working environment for theme development, you can follow th
 
 - Fork and clone, or just download the theme from GitHub (https://github.com/SuperdeskWebPublisher/theme-dailyNews)
 - Make sure Gulp is working on your system (how to get it up and running see here: https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
-- Gulp file is already there in theme. It has all necessary methods already implemented. For development purposes, you can simply fire the task 'watch' and it will automatically a) compile and add all css/scss/sass changes from ~public/css/~ to ~public/dist/style.css~
-b) add all js changes from ~public/js/~ to ~public/dist/all.js~ file
+- Gulp file is already there in theme. It has all necessary methods already implemented. For development purposes, you can simply fire the task 'watch' and it will automatically a) compile and add all css/scss/sass changes from `public/css/` to `public/dist/style.css`
+b) add all js changes from `public/js/` to `public/dist/all.js` file
 - For applying changes for production, there is the task 'build' which will also minify css and js and add specific version to these files (to prevent browser caching issues)
-- You can also manually run tasks ~sass~, ~js~, ~cssmin~, ~jsmin~, ~version~, as well as ~sw~ (service worker steps that ensure propper pre-caching on browser side)
+- You can also manually run tasks `sass`, `js`, `cssmin`, `jsmin`, `version`, as well as `sw` (service worker steps that ensure propper pre-caching on browser side)
 
 ADJUSTING AND CUSTOMIZING THEME
 -------------------------------
@@ -30,6 +30,6 @@ ADJUSTING AND CUSTOMIZING THEME
 - category pages with pagination. Initial category page features one top article.
 - article page with featured image on top, article content and article gallery under it (image thumbs that open full version in a fancybox)
 - theme also comes with RSS template, static page, search results page and listing of trending articles based on custom criteria (setable in template)
-- Theme has built-in support for Google AMP (accelerated mobile pages). These templates are in subfolder ~/amp~. More information on Google AMP project is here: https://www.ampproject.org/
+- Theme has built-in support for Google AMP (accelerated mobile pages). These templates are in subfolder `/amp`. More information on Google AMP project is here: https://www.ampproject.org/
 
 For theme templates customization please refer to Superdesk Publisher documentation, starting here: http://superdesk-web-publisher.readthedocs.io/en/latest/templates_system/index.html
