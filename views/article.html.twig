@@ -53,10 +53,14 @@
 					  {% endgimme %}
 					{% endif %}
 
-				<figure class="article__image">
-        	<img src="{{ rend1250 }}" alt="{{ imgCaption }}"  />
-        	<figcaption>{{ imgCaption }}</figcaption>
-				</figure>
+					{% gimme rendition with { 'name': '1250x600', 'fallback': 'original' } %}
+        				{% set rend1250 = path(rendition) %}
+					{% endgimme %}
+
+        			<img src="{{ rend1250 }}" alt="{{ imgCaption }}" width="930" height="450" }}" />
+        			<figcaption>{{ imgCaption }}</figcaption>
+
+					</figure>
 
 					<div class="article__text marginTop30">
 						<p>{{ gimme.article.body|raw }}</p>
