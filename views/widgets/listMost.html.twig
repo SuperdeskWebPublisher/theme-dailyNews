@@ -1,5 +1,9 @@
+  <div class="accordion__section">
+    <a class="accordion__sectionTitle {#active#}" href="#accordion-{{ contentList.id }}">{{ contentList.name }}</a>
+    <div id="accordion-{{ contentList.id }}" class="accordion__sectionContent">
+
 {% cache 'contentlist' ~ contentList.id { time: contentList.cacheLifeTime ?: 0 } %}
-    {% for item in contentList.items %}
+    {% for item in contentList.items|slice(start, 5) %}
     
     <article class="accordion__sectionItem">
         <h4 class="accordion__sectionHeadline"><a href="{{ item.content.route.staticPrefix }}/{{ item.content.slug }}">{{ item.content.title }}</a></h4>
@@ -8,3 +12,6 @@
 
     {% endfor %}
 {% endcache %}
+
+    </div>
+  </div>

@@ -16,9 +16,7 @@
 		<div class="row">
 
 			<div class="article col-md-9 col-sm-12 col-xs-12">
-
 				<article>
-
 					<span class="article__kicker">Lorem ipsum</span>
 					<h2 class="article__headline marginBottom30"> {{ gimme.article.title }}</h2>
 
@@ -41,6 +39,7 @@
 						<span class="articleMetadata__share">
 							Share
 						</span>
+
 					</div>
 
 					{% set imgCaption = "Default image" %}
@@ -82,6 +81,17 @@
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu enim in velit bibendum gravida nec et odtio. Cras congue, orci vitae eleifend congue, felis mi tincidunt risus, et lobortis turpis ex vel velit. Nullam pellentesque tempor magna a fermentum.</p>
 						</div>
 						#}
+
+						{% for keyword in gimme.article.keywords %}
+						{% if loop.first %}
+						<ul class="article__keywords">
+							<li>Keywords: </li>
+    					{% endif %}	
+        					<li><a href="{{ url('trending') }}?kw={{ keyword }}">{{ keyword }}</a></li>
+    					{% if loop.last %}	
+						</ul>
+						{% endif %}
+						{% endfor %}
 
 					{% include 'partials/slideshow.html.twig' %}
 
