@@ -30,7 +30,7 @@
 							by <a href="#">{{gimme.article.metadata.byline}}</a>
 						</span>
 
-						<time class="articleMetadata__info" datetime="{{ gimme.article.publishedAt|date("c") }}">{{ gimme.article.publishedAt|date("d F Y, H:i \\h") }}</time>
+						<time class="articleMetadata__info hidden-xs" datetime="{{ gimme.article.publishedAt|date("c") }}">{{ gimme.article.publishedAt|date("d F Y, H:i \\h") }}</time>
 
 						{% if gimme.article.publishedAt != gimme.article.updatedAt %}
 							<span class="articleMetadata__info">updated <span class="articleMetadata__updated">{{ gimme.article.updatedAt|date("d F Y, H:i \\h") }}</span></span>
@@ -166,8 +166,8 @@ s.setAttribute('data-timestamp', +new Date());
         		{% endcontainer %}
 
 			</div>
-{#
-			<div class="article__arrows">
+
+			<div class="article__arrows hidden-xs hidden-sm hidden-md">
 				<a class="article__arrowItem article__arrowItem--prev" href="#">
 					<div class="article__arrow">
 						<img src="{{asset('theme/img/arrow_prev.svg')}}">
@@ -192,7 +192,7 @@ s.setAttribute('data-timestamp', +new Date());
 					</div>
 				</a>
 			</div>
-#}
+			
 		</div>
 
 	</main>
