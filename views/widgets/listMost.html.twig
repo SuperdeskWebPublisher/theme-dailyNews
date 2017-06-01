@@ -1,6 +1,7 @@
   <div class="accordion__section">
-    <a class="accordion__sectionTitle {#active#}" href="#accordion-{{ contentList.id }}">{{ contentList.name }}</a>
-    <div id="accordion-{{ contentList.id }}" class="accordion__sectionContent">
+    {% set newId = contentList.id - 2 %}
+    <a class="accordion__sectionTitle {#active#}" href="#accordion-{{ newId }}">{{ contentList.name }}</a>
+    <div id="accordion-{{ newId }}" class="accordion__sectionContent">
 
 {% cache 'contentlist' ~ contentList.id { time: contentList.cacheLifeTime ?: 0 } %}
     {% for item in contentList.items|slice(start, 5) %}
