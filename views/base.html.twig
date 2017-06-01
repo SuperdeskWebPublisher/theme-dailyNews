@@ -20,7 +20,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="shortcut icon" href="{{ asset('theme/img/favicon.ico') }}">
+  <link rel="shortcut icon" href="/public/img/icons/favicon.ico" />
 
   <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Source+Sans+Pro:300,400,600,700&amp;subset=latin-ext" rel="stylesheet">
 
@@ -85,7 +85,7 @@
       <div class="row">
 
         <div class="verticalMiddle col-md-5 col-sm-5 col-xs-12">
-          <a class="header__logo" href="{{ url('home') }}"><img src="{{ asset('theme/img/logo.svg') }}"></a>
+          <a class="header__logo" href="{{ url('home') }}"><img src="public/img/logo.svg"></a>
         </div>
 
         <div class="header__search verticalMiddle col-sm-7 col-md-7 col-xs-12">
@@ -134,7 +134,7 @@
     <div class="row">
 
       <div class="footer__logo col-md-3 col-sm-3 col-xs-12">
-        <a href="#"><img src="{{ asset('theme/img/logo-white.svg') }}"></a>
+        <a href="{{ url('home') }}"><img src="public/img/logo-white.svg"></a>
       </div>
 
 {% container 'footerNav' %}
@@ -185,6 +185,7 @@
       $('.weather-temperature').openWeather({
         key: 'ffccf64d91c2144d8018e8c5fc4a2e0d',
         city: 'Belgrade',
+        units: 'c',
         descriptionTarget: '.weather-description',
         minTemperatureTarget: '.weather-min-temperature',
         maxTemperatureTarget: '.weather-max-temperature',
