@@ -53,11 +53,11 @@
     <div class="container">
       <div class="row">
 
-        <div class="topBar__weather col-sm-3 col-md-3 col-xs-3">
+        <div class="topBar__weather col-sm-3 col-md-3 col-xs-12">
           <p><img src="" class="weather-icon" alt="Weather Icon" /><span class="weather-temperature"></span>, <span class="weather-place"></span></p>
         </div>
 
-        <div class="topBar__links col-sm-7 col-md-7 col-xs-7">
+        <div class="topBar__links col-sm-6 col-md-6 col-xs-5 hidden-xs">
           <ul>
             {% gimmelist article from articles with {'route' : '/about' } %}
             <li><a href="{{ url(article) }}">{{ article.title }}</a></li>
@@ -65,7 +65,7 @@
           </ul>
         </div>
 
-        <div class="topBar__social col-sm-2 col-md-2 col-xs-2">
+        <div class="topBar__social col-sm-3 col-md-3 col-xs-6 hidden-xs">
           <ul>
             <li><a href="https://www.facebook.com/Superdesk/"><img src="{{ asset('theme/img/social-fb.svg') }}"></a></li>
             <li><a href="https://twitter.com/Sourcefabric"><img src="{{ asset('theme/img/social-tw.svg') }}"></a></li>

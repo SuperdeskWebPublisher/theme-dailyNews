@@ -32,7 +32,7 @@
 							by <a href="#">{{gimme.article.metadata.byline}}</a>
 						</span>
 
-						<time class="articleMetadata__info" datetime="{{ gimme.article.publishedAt|date("c") }}">{{ gimme.article.publishedAt|date("d F Y, H:i \\h") }}</time>
+						<time class="articleMetadata__info hidden-xs" datetime="{{ gimme.article.publishedAt|date("c") }}">{{ gimme.article.publishedAt|date("d F Y, H:i \\h") }}</time>
 
 						{% if gimme.article.publishedAt != gimme.article.updatedAt %}
 							<span class="articleMetadata__info">updated <span class="articleMetadata__updated">{{ gimme.article.updatedAt|date("d F Y, H:i \\h") }}</span></span>
