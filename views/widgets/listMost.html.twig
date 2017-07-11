@@ -1,17 +1,17 @@
   <div class="accordion__section">
-    {% set newId = contentList.id - 4 %}
+    {% set newId = listId - 4 %}
     <a class="accordion__sectionTitle {% if newId == 1 %}active{% endif %}" href="#accordion-{{ newId }}">{{ contentList.name }}</a>
     <div id="accordion-{{ newId }}" class="accordion__sectionContent">
 
-{% cache 'contentlist' ~ contentList.id { time: contentList.cacheLifeTime ?: 0 } %}
-    {% for item in contentList.items|slice(start, 5) %}
-    
+{% cache 'contentlist' ~ listId { time: 600 } %}
+
+    {% gimmelist item from contentListItems|limit(5) with { contentListId: listId } %}
     <article class="accordion__sectionItem">
-        <h4 class="accordion__sectionHeadline"><a href="{{ item.content.route.staticPrefix }}/{{ item.content.slug }}">{{ item.content.title }}</a></h4>
+        <h4 class="accordion__sectionHeadline"><a href="{{ url(item.content) }}">{{ item.content.title }}</a></h4>
         <span class="accordion__sectionCount">120.406 views</span>
     </article>
+    {% endgimmelist %}
 
-    {% endfor %}
 {% endcache %}
 
     </div>
