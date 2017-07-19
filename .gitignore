@@ -13,3 +13,4 @@ sftp-config.json
 .remote-sync.json
 .grunt
 .sass-cache/
+package-lock.json

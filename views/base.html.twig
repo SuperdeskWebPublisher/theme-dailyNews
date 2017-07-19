@@ -1,4 +1,4 @@
-{% set version = '1486046430781' %}
+{% set version = '1500463647095' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +26,6 @@
 
   <link rel="stylesheet" href="/public/dist/style.css" />
 
-
 </head>
 <body>
 
@@ -49,6 +48,12 @@
     s.parentNode.insertBefore(gcse, s);
   })();</script>
 
+{% include 'partials/login-popup.html.twig' %}
+
+{% include 'partials/register-popup.html.twig' %}
+
+{% include 'partials/user-profile.html.twig' %}
+
   <div class="topBar">
     <div class="container">
       <div class="row">
@@ -58,11 +63,22 @@
         </div>
 
         <div class="topBar__links col-sm-6 col-md-6 col-xs-5 hidden-xs">
-          <ul>
+          <ul class="pull-left">
             {% gimmelist article from articles with {'route' : '/about' } %}
             <li><a href="{{ url(article) }}">{{ article.title }}</a></li>
             {% endgimmelist %}
           </ul>
+          <ul class="pull-right">          
+          {% if app.user %}
+            <li><a href="#" class="open_user_profile" data-toggle="modal" data-target="#userProfile">Hello {{ app.user.username }}</a></li>
+            <li>|</li>
+            <li><a href="{{ url('security_logout') }}">Logout</a></li>
+          {% else %}
+            <li><a href="#" class="open_user_profile" data-toggle="modal" data-target="#loginPopup">Sign in</a></li>
+            <li>|</li>
+            <li><a href="#" class="open_user_profile" data-toggle="modal" data-target="#registerPopup">Sign up</a></li>
+          {% endif %}
+          </ul> 
         </div>
 
         <div class="topBar__social col-sm-3 col-md-3 col-xs-6 hidden-xs">
