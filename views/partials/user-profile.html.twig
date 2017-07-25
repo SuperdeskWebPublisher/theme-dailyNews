@@ -1,0 +1,76 @@
+<div class="modal" id="userProfile" tabindex="-1" role="dialog" aria-labelledby="userProfileTitle" aria-hidden="true">
+  	<div class="modal-dialog" role="document">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<h5 class="modal-title" id="userProfileTitle">Edit Profile</h5>
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          		<span aria-hidden="true">&times;</span>
+        		</button>
+      		</div>
+      		<div class="modal-body" id="childHolder">
+				<form name="profile" action="" id="editProfile">
+
+					<div class="field_row row">
+						<label for="l_field_login" class="span2">{{ 'user.popup.username'|trans|desc('User name') }}</label>
+						<div class="span3">
+							<input type="text" id="_usernameP" name="_username" value="" />
+						</div>
+					</div>
+
+					<div class="field_row row">
+						<label for="l_field_login" class="span2">{{ 'user.popup.email'|trans|desc('E-mail') }}</label>
+						<div class="span3">
+							<input type="email" id="_emailP" name="_email" value="" />
+						</div> 
+					</div>
+
+					<div class="field_row row">
+						<label for="l_field_login" class="span2">{{ 'user.popup.email'|trans|desc('First name') }}</label>
+						<div class="span3">
+							<input type="text" id="_fnameP" name="_fname" value="" />
+						</div> 
+					</div>
+
+					<div class="field_row row">
+						<label for="l_field_login" class="span2">{{ 'user.popup.email'|trans|desc('Last name') }}</label>
+						<div class="span3">
+							<input type="text" id="_lnameP" name="_lname" value="" />
+						</div> 
+					</div>
+
+
+					<div class="field_row row">
+						<label for="l_field_login" class="span2">{{ 'user.popup.about'|trans|desc('About') }}</label>
+						<div class="span3">
+							<textarea id="_aboutP" name="_about" placeholder=""></textarea>
+						</div>
+					</div>					           
+
+					<div class="field_row row">
+						<label for="l_field_login" class="span2">{{ 'user.popup.password'|trans|desc('Password') }}</label>
+						<div class="span3">
+							<input type="password" id="_passwordP" name="_password" value="" />
+						</div>
+					</div>   
+
+					<div class="field_row row">
+						<label for="l_field_login" class="span2">{{ 'user.popup.passwordConfirm'|trans|desc('Confirm password') }}</label>
+						<div class="span3">
+							<input type="password" id="_password2P" name="_password2" value="" />
+						</div>
+					</div>
+
+					<div class="field_row row">
+						<div class="span3 offset2"> 
+							<input type="submit" value="Save Profile" class="float_right">
+						</div>
+					</div>  
+
+				</form>	
+
+				<div id="editProfileResult"></div>			
+
+			</div>
+		</div>
+	</div>
+</div>

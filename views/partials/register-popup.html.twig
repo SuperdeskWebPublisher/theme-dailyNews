@@ -1,0 +1,55 @@
+<div class="modal" id="registerPopup" tabindex="-1" role="dialog" aria-labelledby="registerPopupTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginPopupTitle">Register</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+		<div class="styled_form login_form" id="registerFormHolder">
+
+			<h4>Don't have account yet? Create one here:</h4>
+
+			<form name="register" action="/app_dev.php/api/v1/users/register/" id="registerForm">
+				<div class="field_row row">
+					<label for="l_field_login" class="span2">{{ 'user.popup.email'|trans|desc('E-mail') }}</label>
+					<div class="span3">
+						<input type="email" name="_email" value="" />
+					</div> 
+				</div>                   
+				<div class="field_row row">
+					<label for="l_field_login" class="span2">{{ 'user.popup.username'|trans|desc('User name') }}</label>
+					<div class="span3">
+						<input type="text" name="_username" value="" />
+					</div>
+				</div>
+				<div class="field_row row">
+					<label for="l_field_login" class="span2">{{ 'user.popup.password'|trans|desc('Password') }}</label>
+					<div class="span3">
+						<input type="password" name="_password" value="" />
+					</div>
+				</div>   
+				<div class="field_row row">
+					<label for="l_field_login" class="span2">{{ 'user.popup.passwordConfirm'|trans|desc('Confirm password') }}</label>
+					<div class="span3">
+						<input type="password" name="_password2" value="" />
+					</div>
+				</div>                         
+				<div class="field_row row">
+					<div class="span3 offset2"> 
+						<input type="submit" value="Sign Up" class="float_right">
+					</div>
+				</div>           
+			</form>
+
+			<div id="registrationResult"></div>
+
+		</div>
+
+      </div>
+    </div>
+  </div>
+</div>
