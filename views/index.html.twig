@@ -116,7 +116,7 @@
 
 				{% gimmelist article from articles|start(0)|limit(3)|order('publishedAt','desc') with {'route': '/business'}  %}
 					{% if loop.index == 1 %}
-						{% include 'partials/mainArticle.html.twig' with {'class' : 'col-md-6 col-sm-12 col-xs-12', 'image':'small', 'deck': 'none'} %}
+						{% include 'partials/mainArticle--small.html.twig' with {'class' : 'col-md-6 col-sm-12 col-xs-12', 'image':'small', 'deck': 'none'} %}
 					{% else %}
 						{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--threeColumns col-md-3 col-sm-6 col-xs-12'} %}
 					{% endif %}

@@ -2,14 +2,29 @@
   .articleListSmall__item
     overflow: hidden
     @include mobileBorder()
-    padding-bottom: 2px !important
   .articleListSmall__image
     float: left
     margin-right: 20px
+    +md
+      float: none
+    +lg
+      float: left
+      width: 90px
+    img
+      width: 90px
+      +md
+        width: 100%
+      +lg
+        width: auto
   .articleListSmall__headline
-    font-size: 1.8rem
+    font-size: 1.75rem
     font-weight: 700
+    line-height: 115%
     margin-top: 0px
     margin-bottom: 10px
+    +md
+      margin-top: 10px
+    +lg
+      margin-top: 0px
     &:hover a
       color: $colorTheme

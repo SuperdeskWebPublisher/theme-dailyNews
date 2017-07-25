@@ -1,29 +1,44 @@
 .editorialComment
+  position: relative
   background-color: $colorTheme
   padding: 40px 30px
   color: $colorWhite
+  overflow: hidden
   p
     font-size: 1.8rem
     color: $colorWhite
   a
     color: $colorWhite
+  &:after
+    position: absolute
+    top: -10px
+    right: 20px
+    display: block
+    content: url("../img/quote-blue.svg")
+    width: 96px
+    height: 74px
+    z-index: 1
   .editorialComment__headline
+    position: relative
     font-family: $fontSerif
     font-size: 2rem
     font-weight: 800
     margin: 0px
     margin-bottom: 20px
+    z-index: 2
   blockquote
+    position: relative
     font-style: italic
     margin: 0px
     font-weight: 300
+    z-index: 2
   .editorialComment__name
     font-weight: 400
     font-style: normal
     display: block
   .editorialComment__article
     color: #a3d7f0
-    margin-left: 20px
+    margin-left: 12px
     a
       color: #a3d7f0
       border-bottom: 1px dotted #a3d7f0

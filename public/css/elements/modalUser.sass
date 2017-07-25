@@ -1,0 +1,29 @@
+.modalUser
+  font-family: $fontSerif
+  label
+    font-family: $fontSerif
+    font-size: 1.4rem
+    flex: 1 0 100%
+    +sm
+      flex: 1 0 30%
+  input, textarea
+    flex: 1 0 100%
+    +sm
+      flex: 1 0 70%
+    &[type="submit"]
+      flex: 0 0 33%
+      width: auto
+
+.modalUser__inputWrap
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  margin-bottom: 20px
+  overflow: hidden
+
+#registrationResult
+  p
+    font-size: 1.4rem
+  .flash-success
+    font-size: 1.4rem
+    font-weight: 700
