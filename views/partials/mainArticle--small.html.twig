@@ -1,0 +1,58 @@
+<article class="mainArticle {{class}}">
+
+            <figure class="mainArticle__image {% if image =='small' %}mainArticle__image--small{% endif %} ">
+
+{% set imgCaption = "" %}
+{% set rend610 = "/public/img/article_img/610x380.png" %}
+{% set rend1250 = "/public/img/article_img/1250x600.png" %}
+
+  {% if article.featureMedia %}
+    {% gimme rendition with { 'media': article.featureMedia, 'name': '610x380' } %}
+      {% set rend610 = path(rendition) %}
+      {% set imgCaption = article.featureMedia.description %}
+    {% endgimme %}
+    {% gimme rendition with { 'media': article.featureMedia, 'name': '1250x600' } %}
+      {% set rend1250 = path(rendition) %}
+    {% endgimme %}
+  {% else %}
+    {% gimmelist media from articleMedia|limit(1) with {'article': article} %}
+      {% set imgCaption = media.body %}
+      {% gimme rendition with { media: media, 'name': '610x380' } %}
+           {% set rend610 = path(rendition) %}
+      {% endgimme %}
+      {% gimme rendition with {media: media,  'name': '1250x600' } %}
+           {% set rend1250 = path(rendition) %}
+      {% endgimme %}
+    {% endgimmelist %}
+  {% endif %}
+
+              <a href="{{ url(article) }}">
+                {% if image=='small' %}
+                  <img src="{{ rend610 }}" alt="{{ imgCaption }}"  }}">
+                {% else %}
+                  <img src="{{ rend1250 }}" alt="{{ imgCaption }}" }}">
+                {% endif %}
+              </a>
+
+            </figure>
+          <div class="mainArticle__text ">
+            <a href="{{ url(article) }}">
+              <span class="mainArticle__kicker">Lorem ipsum</span>
+              <h2 class="mainArticle__headline mainArticle__headline--small">{{ article.title }}</h2>
+            </a>
+            {% if deck!='none' %}
+            <div class="mainArticle__teaser">
+              <p>{% if foo is empty %}
+                    {{ article.body|striptags|safeTruncate(200,"...") }}
+                  {%else%}
+                    {{ article.lead|striptags|safeTruncate(200,"...") }}
+                  {%endif%}</p>
+            </div>
+          {% endif %}
+            <div class="articleMetadata">
+              <span class="articleMetadata__byline articleMetadata__byline--white">by <a href="#">{{article.metadata.byline}}</a></span>
+              <a class="articleMetadata__shares articleMetadata__info articleMetadata__info--white" href="#">240</a>
+              <a class="articleMetadata__comments articleMetadata__info articleMetadata__info--white" href="#">20</a>
+            </div>
+          </div>
+        </article>
