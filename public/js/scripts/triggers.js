@@ -1,9 +1,17 @@
-// accordion
+/* DISQUS */
+(function() {
+var d = document, s = d.createElement('script');
+s.src = '//superdeskdailynews.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
 
+/* OKAYNAV */
 $(document).ready(function() {
-$('#nav-main').okayNav();
-$('#topics').okayNav();
+  $('#nav-main').okayNav();
+  $('#topics').okayNav();
 
+/* ACCORDION */
   function close_accordion_section() {
     jQuery('.accordion .accordion__sectionTitle').removeClass('active');
     jQuery('.accordion .accordion__sectionContent').slideUp(300).removeClass('open');
