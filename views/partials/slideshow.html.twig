@@ -1,6 +1,6 @@
 {% set imgCounter = 0 %}
 
-						<div id="links">
+<div id="links">
 {% gimmelist media from articleMedia with {'article': article} %}
   {% set linkThumb = "/public/img/article_img/610x380.png" %}
   {% set linkFull = "/public/img/article_img/1250x600.png" %}
@@ -16,5 +16,4 @@
     {% endif %}
   {% endif %}
 {% endgimmelist %}					
-						</div>
-					</div>
+</div>

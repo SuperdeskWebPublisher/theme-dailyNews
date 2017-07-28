@@ -1,26 +1,10 @@
+<article class="articleGrid__item {{ class }}">
+
 {% set imgCaption = "Default image" %}
 {% set rend610 = "/public/img/article_img/610x380.png" %}
 
-{% if article.featureMedia %}
-  {% gimme rendition with { 'media': article.featureMedia, 'name': '610x380' } %}
-    {% set rend610 = path(rendition) %}
-    {% set imgCaption = article.featureMedia.description %}
-  {% endgimme %}
-{% else %}
-  {% gimmelist media from articleMedia|limit(1) with {'article': article} %}
-    {% set imgCaption = media.body %}
-    {% gimme rendition with { media: media, 'name': '610x380' } %}
-         {% set rend610 = path(rendition) %}
-    {% endgimme %}
-  {% endgimmelist %}
-{% endif %}
+{% include 'partials/image610x380.html.twig' with {'imgCaption' : imgCaption, 'rend610' : rend610, 'where' : 'grid' } %}
 
-<article class="articleGrid__item {{ class }}">
-  <a class="articleGrid__image articleGrid__image--smallMobile" href="{{ url(article) }}">
-    <figure>
-      <img src="{{ rend610 }}" alt="{{ imgCaption }}" />
-    </figure>
-  </a>
   <a href="{{ url(article) }}">
     <span class="articleGrid__kicker">Lorem ipsum</span>
     <h3 class="articleGrid__headline">{{ article.title }}</h3>

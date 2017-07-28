@@ -2,188 +2,166 @@
 
 {% block body %}
 
-	<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
-    	<div class="slides"></div>
-    	<h3 class="title"></h3>
-    	<a class="prev">‹</a>
-    	<a class="next">›</a>
-    	<a class="close">×</a>
-    	<a class="play-pause"></a>
-    	<ol class="indicator"></ol>
-	</div>
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+   	<div class="slides"></div>
+   	<h3 class="title"></h3>
+  	<a class="prev">‹</a>
+   	<a class="next">›</a>
+   	<a class="close">×</a>
+   	<a class="play-pause"></a>
+   	<ol class="indicator"></ol>
+</div>
 
-	<main class="container">
-		<div class="row">
-
-			<div class="article col-md-9 col-sm-12 col-xs-12">
-
-				<article>
-
-					<span class="article__kicker">Lorem ipsum</span>
-					<h2 class="article__headline marginBottom30"> {{ gimme.article.title }}</h2>
-
-					<div class="article__lead">
-						<p>{{ gimme.article.lead|raw }}</p>
-					</div>
-
-					<div class="articleMetadata marginBottom30">
-						<span class="articleMetadata__byline">
-							<figure class="articleMetadata__image"><a href="#"><img src="{{asset('theme/img/article_img/140x140.png')}}"></a></figure>
-							by <a href="#">{{gimme.article.metadata.byline}}</a>
-						</span>
-
-						<time class="articleMetadata__info hidden-xs" datetime="{{ gimme.article.publishedAt|date("c") }}">{{ gimme.article.publishedAt|date("d F Y, H:i \\h") }}</time>
-
-						{% if gimme.article.publishedAt != gimme.article.updatedAt %}
-							<span class="articleMetadata__info">updated <span class="articleMetadata__updated">{{ gimme.article.updatedAt|date("d F Y, H:i \\h") }}</span></span>
-						{% endif %}
-
-						<span class="articleMetadata__share">
-							Share
-						</span>
-					</div>
-
-					{% set imgCaption = "Default image" %}
-					{% set rend1250 = "/public/img/article_img/1250x600.png" %}
-
-					{% if gimme.article.featureMedia %}
-					  {% gimme rendition with { 'media': gimme.article.featureMedia, 'name': '1250x600', 'fallback': 'original' } %}
-					    {% set rend1250 = path(rendition) %}
-					    {% set imgCaption = article.featureMedia.description %}
-					  {% endgimme %}
+<main class="container">
+	<div class="row">
+		<div class="article col-md-9 col-sm-12 col-xs-12">
+			<article>
+				<span class="article__kicker">Lorem ipsum</span>
+				<h2 class="article__headline marginBottom30"> {{ gimme.article.title }}</h2>
+				<div class="article__lead">
+					<p>{{ gimme.article.lead|raw }}</p>
+				</div>
+				<div class="articleMetadata marginBottom30">
+					<span class="articleMetadata__byline">
+						<figure class="articleMetadata__image"><a href="#"><img src="{{asset('theme/img/article_img/140x140.png')}}"></a></figure>by <a href="#">{{gimme.article.metadata.byline}}</a>
+					</span>
+					<time class="articleMetadata__info hidden-xs" datetime="{{ gimme.article.publishedAt|date("c") }}">{{ gimme.article.publishedAt|date("d F Y, H:i \\h") }}</time>
+					{% if gimme.article.publishedAt != gimme.article.updatedAt %}
+					<span class="articleMetadata__info">updated <span class="articleMetadata__updated">{{ gimme.article.updatedAt|date("d F Y, H:i \\h") }}</span></span>
 					{% endif %}
+					<span class="articleMetadata__share">Share</span>
+				</div>
 
-					{% gimme rendition with { 'name': '1250x600', 'fallback': 'original' } %}
-        				{% set rend1250 = path(rendition) %}
+				{% set imgCaption = "Default image" %}
+				{% set rend1250 = "/public/img/article_img/1250x600.png" %}
+
+				{% if gimme.article.featureMedia %}
+					{% gimme rendition with { 'media': gimme.article.featureMedia, 'name': '1250x600', 'fallback': 'original' } %}
+					    {% set rend1250 = path(rendition) %}
+					    {% set imgCaption = gimme.article.featureMedia.description %}
 					{% endgimme %}
+				{% endif %}
 
+				{% gimme rendition with { 'name': '1250x600', 'fallback': 'original' } %}
+        			{% set rend1250 = path(rendition) %}
+				{% endgimme %}
+
+				<figure>
         			<img src="{{ rend1250 }}" alt="{{ imgCaption }}" width="930" height="450" }}" />
         			<figcaption>{{ imgCaption }}</figcaption>
+				</figure>
 
-					</figure>
+				<div class="article__text marginTop30">
+					<p>{{ gimme.article.body|raw }}</p>
 
-					<div class="article__text marginTop30">
-						<p>{{ gimme.article.body|raw }}</p>
+					{# 
+					<blockquote>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu enim in velit bibendum gravida nec et odio.</p>
+						<footer>
+							<cite>
+								<span>- Diane Long</span>
+							</cite>
+						</footer>
+					</blockquote>
+					#}
 
-						{#
-						<blockquote>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu enim in velit bibendum gravida nec et odio.</p>
-							<footer>
-								<cite>
-									<span>- Diane Long</span>
-								</cite>
-							</footer>
-						</blockquote>
-						#}
+					{#
+					<div class="article__entrefilet article__floatLeft">
+						<h3>Entrefilet</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu enim in velit bibendum gravida nec et odtio. Cras congue, orci vitae eleifend congue, felis mi tincidunt risus, et lobortis turpis ex vel velit. Nullam pellentesque tempor magna a fermentum.</p>
+					</div>
+					#}
 
-						{#
-						<div class="article__entrefilet article__floatLeft">
-							<h3>Entrefilet</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu enim in velit bibendum gravida nec et odtio. Cras congue, orci vitae eleifend congue, felis mi tincidunt risus, et lobortis turpis ex vel velit. Nullam pellentesque tempor magna a fermentum.</p>
-						</div>
-						#}
+					{% for keyword in gimme.article.keywords %}
+					{% if loop.first %}
+					<ul class="article__keywords">
+						<li>Keywords: </li>
+    				{% endif %}	
+        				<li><a href="{{ url('trending') }}?kw={{ keyword }}">{{ keyword }}</a></li>
+    				{% if loop.last %}	
+					</ul>
+					{% endif %}
+					{% endfor %}
 
 					{% include 'partials/slideshow.html.twig' %}
 
-					<div id="disqus_thread"></div>
-<script>
-
-(function() {
-var d = document, s = d.createElement('script');
-s.src = '//superdeskdailynews.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-				</article>
-
-				<div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12">
-
-						<h3 class="sectionHeadingBold marginTop30"><a href="{{path(gimme.article.route)}}">More from {{ gimme.article.route.name|capitalize }}</a></h3>
-						<div class="row">
-
-							{% set currArt = gimme.article.id %}
-							<div class="articleGrid col-md-6 col-sm-6 col-xs-12">
-
-								{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') if id != currArt %}
-									{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns'} %}
-								{% endgimmelist %}
-
-							</div>
-
-							<div class="articleListSmall col-md-6 col-sm-6 col-xs-12">
-
-								{% gimmelist article from articles|start(1)|limit(4)|order('publishedAt','desc') %}
-									{% include 'partials/articleListSmall__item.html.twig'  %}
-								{% endgimmelist %}
-
-							</div>
-						</div>
-
-					</div>
-
 				</div>
+				<div id="disqus_thread"></div>
 
+			</article>
 
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
 
-
-				<div class="banner greyBackground marginBottom30 col-md-12 col-sm-12 col-xs-12">
+					<h3 class="sectionHeadingBold marginTop30"><a href="{{path(gimme.article.route)}}">More from {{ gimme.article.route.name|capitalize }}</a></h3>
 					<div class="row">
-						<div class="col-md-6 col-sm-6 col-xs-6">
-							<h2>Subscribe headline</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu enim in velit bibendum gravida nec et odio.</p>
-							<a class="button button--blue" href="#">Subscribe</a>
+
+						{% set currArt = gimme.article.id %}
+						<div class="articleGrid col-md-6 col-sm-6 col-xs-12">
+						{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') if id != currArt %}
+							{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns'} %}
+						{% endgimmelist %}
 						</div>
 
-						<div class="banner__image col-md-6 col-sm-6 col-xs-6">
-							<a href="#"><img src="{{asset('theme/img/subscribe_image.png')}}"></a>
+						<div class="articleListSmall col-md-6 col-sm-6 col-xs-12">
+						{% gimmelist article from articles|start(1)|limit(4)|order('publishedAt','desc') %}
+							{% include 'partials/articleListSmall__item.html.twig'  %}
+						{% endgimmelist %}
 						</div>
 					</div>
 				</div>
-
 			</div>
 
-			<div class="col-md-3 col-sm-12 col-xs-12 pull-right">
+			<div class="banner greyBackground marginBottom30 col-md-12 col-sm-12 col-xs-12">
+				<div class="row">
+					<div class="col-md-6 col-sm-6 col-xs-6">
+						<h2>Subscribe headline</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu enim in velit bibendum gravida nec et odio.</p>
+						<a class="button button--blue" href="#">Subscribe</a>
+					</div>
 
-				{% include 'elements/most.html.twig' with {'class' : 'marginBottom30'} %}
-
-				{% container 'frontSidebar' %}
-
-        		{% endcontainer %}
-
+					<div class="banner__image col-md-6 col-sm-6 col-xs-6">
+						<a href="#"><img src="{{asset('theme/img/subscribe_image.png')}}"></a>
+					</div>
+				</div>
 			</div>
+		</div>
 
-			<div class="article__arrows hidden-xs hidden-sm hidden-md hidden-lg">
-				<a class="article__arrowItem article__arrowItem--prev" href="#">
-					<div class="article__arrow">
-						<img src="{{asset('theme/img/arrow_prev.svg')}}">
-					</div>
-					<figure class="article__arrowsImage"><img src="{{asset('theme/img/article_img/140x140.png')}}"></figure>
-					<div class="article__arrows__text">
-						<span class="article__arrows__kicker">Lorem ipsum</span>
-						<h3 class="article__arrows__headline">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
-						<span class="article__arrows__pointer">Previous article</span>
-					</div>
-				</a>
+		<div class="col-md-3 col-sm-12 col-xs-12 pull-right">
 
-				<a class="article__arrowItem article__arrowItem--next" href="#">
-					<div class="article__arrow">
-						<img src="{{asset('theme/img/arrow_next.svg')}}">
-					</div>
-					<figure class="article__arrowsImage"><img src="{{asset('theme/img/article_img/140x140.png')}}"></figure>
-					<div class="article__arrows__text">
-						<span class="article__arrows__kicker">Lorem ipsum</span>
-						<h3 class="article__arrows__headline">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
-						<span class="article__arrows__pointer">Next article</span>
-					</div>
-				</a>
-			</div>
+			{% include 'elements/most.html.twig' with {'class' : 'marginBottom30'} %}
+
+			{% container 'frontSidebar' %}{% endcontainer %}
 
 		</div>
 
-	</main>
-	{% endblock %}
+		<div class="article__arrows hidden-xs hidden-sm hidden-md hidden-lg">
+			<a class="article__arrowItem article__arrowItem--prev" href="#">
+				<div class="article__arrow">
+					<img src="{{asset('theme/img/arrow_prev.svg')}}">
+				</div>
+				<figure class="article__arrowsImage"><img src="{{asset('theme/img/article_img/140x140.png')}}"></figure>
+				<div class="article__arrows__text">
+					<span class="article__arrows__kicker">Lorem ipsum</span>
+					<h3 class="article__arrows__headline">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
+					<span class="article__arrows__pointer">Previous article</span>
+				</div>
+			</a>
+
+			<a class="article__arrowItem article__arrowItem--next" href="#">
+				<div class="article__arrow">
+					<img src="{{asset('theme/img/arrow_next.svg')}}">
+				</div>
+				<figure class="article__arrowsImage"><img src="{{asset('theme/img/article_img/140x140.png')}}"></figure>
+				<div class="article__arrows__text">
+					<span class="article__arrows__kicker">Lorem ipsum</span>
+					<h3 class="article__arrows__headline">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
+					<span class="article__arrows__pointer">Next article</span>
+				</div>
+			</a>
+		</div>
+			
+	</div>
+
+</main>
+{% endblock %}

@@ -1,26 +1,12 @@
 <article class="articleListSmall__item">
 
-  {% set imgCaption = "Default image" %}
-  {% set rend610 = "/public/img/article_img/610x380.png" %}
+    {% set imgCaption = "Default image" %}
+    {% set rend610 = "/public/img/article_img/610x380.png" %}
 
-  {% if article.featureMedia %}
-    {% gimme rendition with { 'media': article.featureMedia, 'name': '610x380' } %}
-      {% set rend610 = path(rendition) %}
-      {% set imgCaption = article.featureMedia.description %}
-    {% endgimme %}
-  {% else %}
-    {% gimmelist media from articleMedia|limit(1) with {'article': article} %}
-      {% set imgCaption = media.body %}
-      {% gimme rendition with { media: media, 'name': '610x380' } %}
-           {% set rend610 = path(rendition) %}
-      {% endgimme %}
-    {% endgimmelist %}
-  {% endif %}
+    {% include 'partials/image610x380.html.twig' with {'imgCaption' : imgCaption, 'rend610' : rend610, 'where' : 'listSmall' } %}
 
-                <a class="articleListSmall__image" href="{{ url(article) }}"><img src="{{ rend610 }}" alt="{{ imgCaption }}" width="90"  /></a>
-
-                <h4 class="articleListSmall__headline"><a href="{{ url(article) }}">{{ article.title }}</a></h4>
-                <div class="articleMetadata">
-                  <span class="articleMetadata__byline">by <a href="{{ url(article) }}">{{ article.metadata.byline }}</a></span>
-                </div>
-              </article>
+    <h4 class="articleListSmall__headline"><a href="{{ url(article) }}">{{ article.title }}</a></h4>
+    <div class="articleMetadata">
+        <span class="articleMetadata__byline">by <a href="{{ url(article) }}">{{ article.metadata.byline }}</a></span>
+    </div>
+</article>

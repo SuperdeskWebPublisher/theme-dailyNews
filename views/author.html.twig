@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<main class="container">
+		<div class="row">
+
+			<div class="article article--noMargin col-md-9 col-sm-12 col-xs-12">
+				<article>
+					<h2 class="article__headline marginBottom30">Test Persona</h2>
+
+					<div class="article__text article__text--noMargin marginTop30">
+
+						<p>{{ gimme.article.lead }}</p>
+						<p>{{ gimme.article.body }}</p>
+
+					</div>
+				</article>
+			</div>
+
+			{% set routeCheck = app.request.baseUrl ~ app.request.pathinfo %}
+			<div class="col-md-3 col-sm-12 col-xs-12 pull-right">
+			{% gimmelist article from articles|order('publishedAt','desc') with {'route': '/author'} %}
+				{% if loop.first %}
+				<div class="sidebarMenu marginBottom30">
+					<h3 class="sectionHeading">{{ gimme.route.name|capitalize }}</h3>
+				{% endif %}
+				{% if routeCheck == path(article) %}
+					<h4 class="sidebarMenu__headline sidebarMenu__headline--active">{{ article.title }}</h4>
+				{% else %}
+					<h4 class="sidebarMenu__headline"><a href="{{ url(article) }}">{{ article.title }}</a></h4>
+				{% endif %}
+				{% if loop.last %}
+				</div>
+				{% endif %}
+			{% endgimmelist %}
+			</div>
+
+		</div>
+
+	</main>
+
+{% endblock %}

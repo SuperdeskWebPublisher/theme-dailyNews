@@ -1,0 +1,23 @@
+{% if article.featureMedia %}
+  {% gimme rendition with { 'media': article.featureMedia, 'name': '610x380' } %}
+    {% set rend610 = path(rendition) %}
+    {% set imgCaption = article.featureMedia.description %}
+  {% endgimme %}
+{% else %}
+  {% gimmelist media from articleMedia|limit(1) with {'article': article} %}
+    {% set imgCaption = media.body %}
+    {% gimme rendition with { media: media, 'name': '610x380' } %}
+      {% set rend610 = path(rendition) %}
+    {% endgimme %}
+  {% endgimmelist %}
+{% endif %}
+
+{% if where == "grid" %}
+  <a class="articleGrid__image articleGrid__image--smallMobile" href="{{ url(article) }}">
+    <figure>
+      <img src="{{ rend610 }}" alt="{{ imgCaption }}" />
+    </figure>
+  </a>
+{% else %}
+  <a class="articleListSmall__image" href="{{ url(article) }}"><img src="{{ rend610 }}" alt="{{ imgCaption }}" width="90"  /></a>
+{% endif %}

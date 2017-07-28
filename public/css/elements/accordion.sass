@@ -10,17 +10,21 @@
     font-size: 2rem
     position: relative
     width: 100%
-    padding: 17px
+    padding: 17px 17px 17px 57px
     display: inline-block
-    background: #777777
+    background: #777777 url('../img/accordion_close.svg') 20px no-repeat
+    background-size: 24px
     border-bottom: 1px solid $colorWhite
     transition: all linear 0.15s
     &:hover
-      background: #888
+      background: #888 url('../img/accordion_close.svg') 20px no-repeat
+      background-size: 24px
+
     &.active
-      background: $colorTheme
       border-bottom: none
       text-decoration: none
+      background: $colorTheme url('../img/accordion_open.svg') 20px no-repeat
+      background-size: 24px
       &:before
         content: " "
         display: block

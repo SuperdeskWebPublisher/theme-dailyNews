@@ -5,10 +5,13 @@
   <main class="container">
     <div class="row">
 
+      {% set trendingAuthor = app.request.get('by') %}
+      {% set trendingKeyword = app.request.get('kw') %}
+
       <div class="col-md-9 col-sm-12 col-xs-12">
         <div class="row">
           <div class="col-xs-12">
-            <h3 class="sectionHeadingBold marginTop10 noBorder">John Smith</h3>
+            <h3 class="sectionHeadingBold marginTop10 noBorder">{% if trendingAuthor %}Author {{ trendingAuthor }}{% elseif trendingKeyword %}Keyword '{{ trendingKeyword }}'{% endif %}</h3>
           </div>
         </div>
 
@@ -23,7 +26,8 @@
 
             {# List all articles from current route and limit them to `itemsPerPage` value starting from `start` value #}
             {% cache 'trendingList'~app.environment~currentPage {time: 600} %}
-              {% gimmelist article from articles|start(start)|limit(itemsPerPage)|order('publishedAt','desc') with {author: ["John Smith"]} %}
+
+              {% gimmelist article from articles|start(start)|limit(itemsPerPage)|order('publishedAt','desc') with {keyword: trendingKeyword, metadata: {byline: trendingAuthor }} %}
 
               {% if loop.first %}
 

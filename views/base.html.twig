@@ -1,4 +1,4 @@
-{% set version = '1486046430781' %}
+{% set version = '1501149807697' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,12 +20,11 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="shortcut icon" href="{{ asset('theme/img/favicon.ico') }}">
+  <link rel="shortcut icon" href="/public/img/icons/favicon.ico" />
 
   <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Source+Sans+Pro:300,400,600,700&amp;subset=latin-ext" rel="stylesheet">
 
   <link rel="stylesheet" href="/public/dist/style.css" />
-
 
 </head>
 <body>
@@ -49,6 +48,12 @@
     s.parentNode.insertBefore(gcse, s);
   })();</script>
 
+{% include 'partials/login-popup.html.twig' %}
+
+{% include 'partials/register-popup.html.twig' %}
+
+{% include 'partials/user-profile.html.twig' %}
+
   <div class="topBar">
     <div class="container">
       <div class="row">
@@ -58,11 +63,22 @@
         </div>
 
         <div class="topBar__links col-sm-6 col-md-6 col-xs-5 hidden-xs">
-          <ul>
+          <ul class="pull-left">
             {% gimmelist article from articles with {'route' : '/about' } %}
             <li><a href="{{ url(article) }}">{{ article.title }}</a></li>
             {% endgimmelist %}
           </ul>
+          <ul class="pull-right">          
+          {% if app.user %}
+            <li><a href="#" class="open_user_profile" data-toggle="modal" data-target="#userProfile">Hello {{ app.user.username }}</a></li>
+            <li>|</li>
+            <li><a href="{{ url('security_logout') }}">Logout</a></li>
+          {% else %}
+            <li><a href="#" class="open_user_profile" data-toggle="modal" data-target="#loginPopup">Sign in</a></li>
+            <li>|</li>
+            <li><a href="#" class="open_user_profile" data-toggle="modal" data-target="#registerPopup">Sign up</a></li>
+          {% endif %}
+          </ul> 
         </div>
 
         <div class="topBar__social col-sm-3 col-md-3 col-xs-6 hidden-xs">
@@ -85,7 +101,7 @@
       <div class="row">
 
         <div class="verticalMiddle col-md-5 col-sm-5 col-xs-12">
-          <a class="header__logo" href="{{ url('home') }}"><img src="{{ asset('theme/img/logo.svg') }}"></a>
+          <a class="header__logo" href="{{ url('home') }}"><img src="/public/img/logo.svg"></a>
         </div>
 
         <div class="header__search verticalMiddle col-sm-7 col-md-7 col-xs-12">
@@ -116,9 +132,9 @@
         <nav role="navigation" id="topics" class="okayNav">
           <ul class="trendingTopics__items">
             <li>Trending authors</li>
-            <li><a href="{{ url('trending') }}">John Smith</a></li>
-            <li><a href="{{ url('trending') }}">George Langsamer</a></li>
-            <li><a href="{{ url('trending') }}">Jane Stockwriter</a></li>    
+            <li><a href="{{ url('trending') }}?by=John+Doe">John Doe</a></li>
+            <li><a href="{{ url('trending') }}?by=Test+Persona">Test Persona</a></li>
+            <li><a href="{{ url('trending') }}?by=Jane+Stockwriter">Jane Stockwriter</a></li>    
           </ul>
         </nav>
       </div>
@@ -134,7 +150,7 @@
     <div class="row">
 
       <div class="footer__logo col-md-3 col-sm-3 col-xs-12">
-        <a href="#"><img src="{{ asset('theme/img/logo-white.svg') }}"></a>
+        <a href="{{ url('home') }}"><img src="/public/img/logo-white.svg"></a>
       </div>
 
 {% container 'footerNav' %}
@@ -159,7 +175,7 @@
         <div class="footer__subscribeForm">
           <form class="form" method="get" action="/register">
             <input type="text" name="proposed_email" placeholder="Your email">
-            <button class="footer__subscribeButton button button--blue" type="submit">Send</button>
+            <button class="footer__subscribeButton button button--color" type="submit">Send</button>
           </form>
         </div>
 
@@ -174,55 +190,18 @@
   </div>
 </footer>
 
-  <script src="{{ asset('theme/dist/all.js') }}"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-$('#nav-main').okayNav();
-$('#topics').okayNav();
+  <script src="/public/dist/all.js"></script>
 
-  function close_accordion_section() {
-    jQuery('.accordion .accordion__sectionTitle').removeClass('active');
-    jQuery('.accordion .accordion__sectionContent').slideUp(300).removeClass('open');
-  }
-
-  jQuery('.accordion__sectionTitle').click(function(e) {
-    // Grab current anchor value
-    var currentAttrValue = jQuery(this).attr('href');
-
-    if(jQuery(e.target).is('.active')) {
-      close_accordion_section();
-    }else {
-      close_accordion_section();
-
-      // Add active class to section title
-      jQuery(this).addClass('active');
-      // Open up the hidden content panel
-      jQuery('.accordion ' + currentAttrValue).slideDown(300).addClass('open'); 
-    }
-
-    e.preventDefault();
-  });
-
-});
-</script>
 <script id="dsq-count-scr" src="//superdeskdailynews.disqus.com/count.js" async></script>
-<script type="text/javascript">
-document.getElementById('links').onclick = function (event) {
-    event = event || window.event;
-    var target = event.target || event.srcElement,
-        link = target.src ? target.parentNode : target,
-        options = {index: link, event: event},
-        links = this.getElementsByTagName('a');
-    blueimp.Gallery(links, options);
-};
-</script> 
 
-  <script>
-    /* Weather script: https://github.com/michael-lynch/open-weather */
+<script type="text/javascript">
+// Weather script: https://github.com/michael-lynch/open-weather
+
     $(function() {
       $('.weather-temperature').openWeather({
         key: 'ffccf64d91c2144d8018e8c5fc4a2e0d',
         city: 'Belgrade',
+        units: 'c',
         descriptionTarget: '.weather-description',
         minTemperatureTarget: '.weather-min-temperature',
         maxTemperatureTarget: '.weather-max-temperature',
@@ -238,8 +217,7 @@ document.getElementById('links').onclick = function (event) {
       });
       
     });
-  
-  </script>
+</script>
 
   </body>
   </html>
