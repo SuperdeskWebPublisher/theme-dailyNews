@@ -122,7 +122,6 @@ $(document).ready(function() {
   /* LOAD USER PROFILE */
 
   var authToken = sessionStorage.getItem('auth_token');
-  console.log("authToken = " + authToken);
   var userId = sessionStorage.getItem('user_id');
   if (authToken) {
     $.ajax({
