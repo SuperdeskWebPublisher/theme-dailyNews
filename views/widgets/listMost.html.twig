@@ -1,10 +1,6 @@
 {% gimme contentList with {'contentListId': listId} %}
 
-{% if contentList.name == "Most read" %}
-    {% set accordionIndex = 1 %}
-{% else %}
-    {% set accordionIndex = listId %}
-{% endif %}
+ {% set accordionIndex = listId %}
 
   <div class="accordion__section">
     <a class="accordion__sectionTitle {% if accordionIndex == 1 %}active{% endif %}" href="#accordion-{{ accordionIndex }}">{{ contentList.name }}</a>
@@ -12,12 +8,10 @@
 
     {% cache 'contentlist' ~ accordionIndex { time: contentList.cacheLifeTime ?: 0 } %}
     {% gimmelist item from contentListItems|limit(5) with { contentListId: listId } %}
-    
     <article class="accordion__sectionItem">
         <h4 class="accordion__sectionHeadline"><a href="{{ url(item.content) }}">{{ item.content.title }}</a></h4>
         <span class="accordion__sectionCount">120.406 views</span>
     </article>
-
     {% endgimmelist %}
     {% endcache %}
 

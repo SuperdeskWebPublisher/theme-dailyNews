@@ -83,10 +83,10 @@
 
         <div class="topBar__social col-sm-3 col-md-3 col-xs-6 hidden-xs">
           <ul>
-            <li><a href="https://www.facebook.com/Superdesk/"><img src="{{ asset('theme/img/social-fb.svg') }}"></a></li>
-            <li><a href="https://twitter.com/Sourcefabric"><img src="{{ asset('theme/img/social-tw.svg') }}"></a></li>
-            <li><a href="https://www.youtube.com/user/Sourcefabric"><img src="{{ asset('theme/img/social-yt.svg') }}"></a></li>
-            <li><a href="{{ url('rss') }}"><img src="{{ asset('theme/img/social-rss.svg') }}"></a></li>
+            <li><a href="https://www.facebook.com/Superdesk/"><img src="/public/img/social-fb.svg"></a></li>
+            <li><a href="https://twitter.com/Sourcefabric"><img src="/public/img/social-tw.svg"></a></li>
+            <li><a href="https://www.youtube.com/user/Sourcefabric"><img src="/public/img/social-yt.svg"></a></li>
+            <li><a href="{{ url('rss') }}"><img src="/public/img/social-rss.svg"></a></li>
           </ul>
         </div>
 
@@ -207,7 +207,7 @@
         maxTemperatureTarget: '.weather-max-temperature',
         placeTarget: '.weather-place',
         iconTarget: '.weather-icon',
-        customIcons: '{{ asset('/public/img/icons/weather/') }}',
+        customIcons: '/public/img/icons/weather/',
         success: function() {
           $('.topBar__weather').show();
         },
