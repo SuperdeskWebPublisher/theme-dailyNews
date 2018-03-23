@@ -1,0 +1,13 @@
+  <div class="accordion__section">
+    <a class="accordion__sectionTitle active" href="#accordion-1">Most read</a>
+    <div id="accordion-1" class="accordion__sectionContent">
+
+    {% gimmelist article from articles|limit(5)|order('pageViews', 'desc')|dateRange('now', '-1 month') ignoreContext %}
+        <article class="accordion__sectionItem">
+          <h4 class="accordion__sectionHeadline"><a href="{{ url(article) }}">{{ article.title }}</a></h4>
+        <span class="accordion__sectionCount">{{ article.articleStatistics.pageViewsNumber }} reads</span>
+    </article>
+    {% endgimmelist %}
+
+    </div>
+  </div>

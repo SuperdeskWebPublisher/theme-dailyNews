@@ -1,7 +1,7 @@
 <article class="articleGrid__item {{ class }}">
 
 {% set imgCaption = "Default image" %}
-{% set rend610 = "/public/img/article_img/610x380.png" %}
+{% set rend610 = "{{ asset('theme/img/article_img/610x380.png') }}" %}
 
 {% include 'partials/image610x380.html.twig' with {'imgCaption' : imgCaption, 'rend610' : rend610, 'where' : 'grid' } %}
 

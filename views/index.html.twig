@@ -127,7 +127,7 @@
 
 		{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') with {'route': '/lifestyle'}  %}
 
-		{% set rend1250 = "/public/img/article_img/1250x600.png" %}
+		{% set rend1250 = "{{ asset('theme/img/article_img/1250x600.png') }}" %}
 		{% gimmelist media from articleMedia|limit(1) with {'article': article} %}
 		{% set imgCaption = media.body %}
   			{% if media.renditions is iterable %}
