@@ -23,7 +23,7 @@
 				</div>
 				<div class="articleMetadata marginBottom30">
 					<span class="articleMetadata__byline">
-						<figure class="articleMetadata__image"><a href="#"><img src="/public/img/article_img/140x140.png"></a></figure>by <a href="#">{{gimme.article.metadata.byline}}</a>
+						<figure class="articleMetadata__image"><a href="#"><img src="{{ asset('theme/img/article_img/140x140.png') }}"></a></figure>by <a href="#">{{gimme.article.metadata.byline}}</a>
 					</span>
 					<time class="articleMetadata__info hidden-xs" datetime="{{ gimme.article.publishedAt|date("c") }}">{{ gimme.article.publishedAt|date("d F Y, H:i \\h") }}</time>
 					{% if gimme.article.publishedAt != gimme.article.updatedAt %}
@@ -33,7 +33,7 @@
 				</div>
 
 				{% set imgCaption = "Default image" %}
-				{% set rend1250 = "/public/img/article_img/1250x600.png" %}
+				{% set rend1250 = "{{ asset('theme/img/article_img/1250x600.png') }}" %}
 
 				{% if gimme.article.featureMedia %}
 					{% gimme rendition with { 'media': gimme.article.featureMedia, 'name': '1250x600', 'fallback': 'original' } %}
@@ -121,7 +121,7 @@
 					</div>
 
 					<div class="banner__image col-md-6 col-sm-6 col-xs-6">
-						<a href="#"><img src="/public/img/subscribe_image.png"></a>
+						<a href="#"><img src="{{ asset('theme/img/subscribe_image.png') }}"></a>
 					</div>
 				</div>
 			</div>
@@ -138,9 +138,9 @@
 		<div class="article__arrows hidden-xs hidden-sm hidden-md hidden-lg">
 			<a class="article__arrowItem article__arrowItem--prev" href="#">
 				<div class="article__arrow">
-					<img src="/public/img/arrow_prev.svg">
+					<img src="{{ asset('theme/img/arrow_prev.svg') }}">
 				</div>
-				<figure class="article__arrowsImage"><img src="/public/img/article_img/140x140.png"></figure>
+				<figure class="article__arrowsImage"><img src="{{ asset('theme/img/article_img/140x140.png') }}"></figure>
 				<div class="article__arrows__text">
 					<span class="article__arrows__kicker">Lorem ipsum</span>
 					<h3 class="article__arrows__headline">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
@@ -150,9 +150,9 @@
 
 			<a class="article__arrowItem article__arrowItem--next" href="#">
 				<div class="article__arrow">
-					<img src="/public/theme/img/arrow_next.svg">
+					<img src="{{ asset('theme/theme/img/arrow_next.svg') }}">
 				</div>
-				<figure class="article__arrowsImage"><img src="/public/img/article_img/140x140.png"></figure>
+				<figure class="article__arrowsImage"><img src="{{ asset('theme/img/article_img/140x140.png') }}"></figure>
 				<div class="article__arrows__text">
 					<span class="article__arrows__kicker">Lorem ipsum</span>
 					<h3 class="article__arrows__headline">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
@@ -166,5 +166,6 @@
 </main>
 
 {{ countPageView(gimme.article) }}
+
 
 {% endblock %}
