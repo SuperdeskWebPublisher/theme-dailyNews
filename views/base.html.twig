@@ -26,6 +26,31 @@
 
   <link rel="stylesheet" href="/public/dist/style.css" />
 
+    <style>
+
+      .accordion .accordion__sectionTitle.active, .editorialComment, .stripBox .stripBox__title.active, .gallery .gallery__strip, .button--color, .articleMetadata .articleMetadata__updated {
+        background-color: {{ themeSetting('primary_color') }};
+      }
+
+      .okayNav li.current, a:hover h3 {
+        color: {{ themeSetting('primary_color') }};
+      }
+
+      .articleMetadata__byline a, .article .article__keywords li a {
+        border-bottom-color: {{ themeSetting('primary_color') }};
+      }
+
+      h1, h2, h3, input {
+        font-family: {{ themeSetting('primary_font_family') }};
+      }
+
+      body {
+        font-size: {{ themeSetting('body_font_size') }};
+        font-family: {{ themeSetting('secondary_font_family') }};
+      }
+
+    </style>
+
 </head>
 <body>
 

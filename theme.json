@@ -9,5 +9,280 @@
             "homepage": "https://www.sourcefabric.org",
             "role": "Organization"
         }
-    ]
+    ],
+    "screenshots": [
+        {
+            "path": "screenshot.png",
+            "title": "Daily News Theme"
+        }
+    ],
+    "settings": {
+        "primary_color": {
+            "label": "Primary Color",
+            "value": "#00a9e1",
+            "type": "string"
+        },
+
+        "primary_font_family": {
+            "label": "Primary Font Family",
+            "value": "Source Sans Pro",
+            "type": "string",
+            "help": "The primary font",
+            "options": [
+                {"value": "Merriweather", "label": "Merriweather"},
+                {"value": "Lato", "label": "Lato"},
+                {"value": "Roboto", "label": "Roboto"}
+            ]
+        },
+        "secondary_font_family": {
+            "value": "Merriweather",
+            "type": "string",
+            "options": [
+                {"value": "Source Sans Pro", "label": "Source Sans Pro"},
+                {"value": "Lato", "label": "Lato"},
+                {"value": "Oswald", "label": "Oswald"}
+            ]
+        },
+        "body_font_size": {
+            "label": "Body Font Size",
+            "value": 14,
+            "type": "integer",
+            "options": [
+                {"value": 14, "label": "14px"},
+                {"value": 16, "label": "16px"},
+                {"value": 18, "label": "18px"}
+            ]
+        }
+    },
+
+    "generatedData": {
+        "routes": [
+            {
+                "name": "Local",
+                "slug": "local",
+                "type": "collection",
+                "templateName": "category.html.twig",
+                "articlesTemplateName": "article.html.twig",
+                "numberOfArticles": 4
+            },
+            {
+                "name": "Business",
+                "slug": "business",
+                "type": "collection",
+                "templateName": "category.html.twig",
+                "articlesTemplateName": "article.html.twig",
+                "numberOfArticles": 4
+            },  
+            {
+                "name": "Lifestyle",
+                "slug": "lifestyle",
+                "type": "collection",
+                "templateName": "category.html.twig",
+                "articlesTemplateName": "article.html.twig",
+                "numberOfArticles": 4
+            },
+            {
+                "name": "Culture",
+                "slug": "culture",
+                "type": "collection",
+                "templateName": "category.html.twig",
+                "articlesTemplateName": "article.html.twig",
+                "numberOfArticles": 4
+            },
+            {
+                "name": "Sports",
+                "slug": "sports",
+                "type": "collection",
+                "templateName": "category.html.twig",
+                "articlesTemplateName": "article.html.twig",
+                "numberOfArticles": 4
+            },
+            {
+                "name": "Opinion",
+                "slug": "opinion",
+                "type": "collection",
+                "templateName": "category.html.twig",
+                "articlesTemplateName": "article.html.twig",
+                "numberOfArticles": 4
+            },
+            {
+                "name": "Home",
+                "slug": "home",
+                "type": "content",
+                "templateName": "index.html.twig"
+            },
+            {
+                "name": "Trending",
+                "slug": "trending",
+                "type": "content",
+                "templateName": "trending.html.twig"
+            }
+        ],
+        "menus": [
+            {
+                "name": "mainNavigation",
+                "label": "Main Navigation",
+                "children": [
+                    {
+                        "name": "home",
+                        "label": "Home",
+                        "route": "Home"
+                    },
+                    {
+                        "name": "local",
+                        "label": "Local",
+                        "route": "local"
+                    },
+                    {
+                        "name": "business",
+                        "label": "Business",
+                        "route": "Business"
+                    },
+                    {
+                        "name": "lifestyle",
+                        "label": "Lifestyle",
+                        "route": "lifestyle"
+                    },
+                    {
+                        "name": "culture",
+                        "label": "Culture",
+                        "route": "culture"
+                    },                    
+                    {
+                        "name": "sports",
+                        "label": "Sports",
+                        "route": "Sports"
+                    },
+                    {
+                        "name": "opinion",
+                        "label": "Opinion",
+                        "route": "opinion"
+                    }
+                ]
+            },
+            {
+                "name": "footerPrim",
+                "label": "Footer Navigation",
+                "children": [
+                    {
+                        "name": "local",
+                        "label": "Local",
+                        "route": "local"
+                    },
+                    {
+                        "name": "business",
+                        "label": "Business",
+                        "route": "Business"
+                    },
+                    {
+                        "name": "lifestyle",
+                        "label": "Lifestyle",
+                        "route": "lifestyle"
+                    },
+                    {
+                        "name": "culture",
+                        "label": "Culture",
+                        "route": "culture"
+                    },                    
+                    {
+                        "name": "sports",
+                        "label": "Sports",
+                        "route": "Sports"
+                    }
+                ]
+            }
+        ],
+        "contentLists": [
+            {
+                "name": "Most commented",
+                "description": null,
+                "type": "automatic",
+                "cacheLifeTime": 0,
+                "limit": null
+            },
+            {
+                "name": "Most shared",
+                "description": null,
+                "type": "automatic",
+                "cacheLifeTime": 0,
+                "limit": null
+            },
+            {
+                "name": "Top news",
+                "description": null,
+                "type": "manual",
+                "cacheLifeTime": 0,
+                "limit": null
+            }
+        ],
+        "containers": [
+            {
+                "name": "footerNav"
+            },
+            {
+                "name": "mainNav"
+            },
+            {
+                "name": "frontSidebar"
+            },
+            {
+                "name": "frontLeftSidebar"
+            },
+            {
+                "name": "listMost",
+                "cssClass": "accordion marginBottom30"
+            }
+
+        ],
+        "widgets": [
+            {
+                "type": "SWP\\Bundle\\TemplatesSystemBundle\\Widget\\MenuWidgetHandler",
+                "name": "mainNav",
+                "visible": true,
+                "parameters": {
+                    "menu_name": "Main navigation",
+                    "template_name": "menu1.html.twig"
+                },
+                "containers": ["mainNav"]
+            },
+            {
+                "type": "SWP\\Bundle\\CoreBundle\\Widget\\TemplateWidget",
+                "name": "mostRead",
+                "visible": true,
+                "parameters": {
+                    "template_name": "mostPopularList.html.twig"
+                },
+                "containers": ["listMost"]
+            },            
+            {
+                "type": "SWP\\Bundle\\CoreBundle\\Widget\\ContentListWidget",
+                "name": "mostShared",
+                "visible": true,
+                "parameters": {
+                    "list_name": "Most shared",
+                    "template_name": "listMost.html.twig"
+                },
+                "containers": ["listMost"]
+            },
+            {
+                "type": "SWP\\Bundle\\CoreBundle\\Widget\\ContentListWidget",
+                "name": "mostCommented",
+                "visible": true,
+                "parameters": {
+                "list_name": "Most commented",
+                "template_name": "listMost.html.twig"
+                },
+                "containers": ["listMost"]
+            },
+            {
+                "type": "SWP\\Bundle\\TemplatesSystemBundle\\Widget\\MenuWidgetHandler",
+                "name": "footerPrim",
+                "visible": true,
+                "parameters": {
+                    "menu_name": "footerPrim"
+                },
+                "containers": ["footerNav"]
+            }
+        ]
+    }
 }
