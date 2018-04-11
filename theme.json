@@ -10,7 +10,12 @@
             "role": "Organization"
         }
     ],
-
+    "screenshots": [
+        {
+            "path": "screenshot.png",
+            "title": "Daily News Theme"
+        }
+    ],
     "settings": {
         "primary_color": {
             "label": "Primary Color",
