@@ -120,8 +120,8 @@
         ],
         "menus": [
             {
-                "name": "mainNavigation",
-                "label": "Main Navigation",
+                "name": "Main navigation",
+                "label": "Main navigation",
                 "children": [
                     {
                         "name": "home",
@@ -161,8 +161,8 @@
                 ]
             },
             {
-                "name": "footerPrim",
-                "label": "Footer Navigation",
+                "name": "Footer navigation",
+                "label": "Footer navigation",
                 "children": [
                     {
                         "name": "local",
@@ -236,7 +236,7 @@
         ],
         "widgets": [
             {
-                "type": "SWP\\Bundle\\TemplatesSystemBundle\\Widget\\MenuWidgetHandler",
+                "type": 3,
                 "name": "mainNav",
                 "visible": true,
                 "parameters": {
@@ -246,16 +246,17 @@
                 "containers": ["mainNav"]
             },
             {
-                "type": "SWP\\Bundle\\CoreBundle\\Widget\\TemplateWidget",
-                "name": "mostRead",
+                "type": 3,
+                "name": "footerPrim",
                 "visible": true,
                 "parameters": {
-                    "template_name": "mostPopularList.html.twig"
+                    "menu_name": "Footer navigation",
+                    "template_name": "menu2.html.twig"
                 },
-                "containers": ["listMost"]
+                "containers": ["footerNav"]
             },            
             {
-                "type": "SWP\\Bundle\\CoreBundle\\Widget\\ContentListWidget",
+                "type": 4,
                 "name": "mostShared",
                 "visible": true,
                 "parameters": {
@@ -265,7 +266,7 @@
                 "containers": ["listMost"]
             },
             {
-                "type": "SWP\\Bundle\\CoreBundle\\Widget\\ContentListWidget",
+                "type": 4,
                 "name": "mostCommented",
                 "visible": true,
                 "parameters": {
@@ -275,13 +276,13 @@
                 "containers": ["listMost"]
             },
             {
-                "type": "SWP\\Bundle\\TemplatesSystemBundle\\Widget\\MenuWidgetHandler",
-                "name": "footerPrim",
+                "type": 6,
+                "name": "mostRead",
                 "visible": true,
                 "parameters": {
-                    "menu_name": "footerPrim"
+                    "template_name": "mostPopularList.html.twig"
                 },
-                "containers": ["footerNav"]
+                "containers": ["listMost"]
             }
         ]
     }
