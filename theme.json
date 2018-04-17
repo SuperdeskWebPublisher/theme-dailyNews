@@ -54,7 +54,6 @@
             ]
         }
     },
-
     "generatedData": {
         "routes": [
             {
@@ -131,7 +130,7 @@
                     {
                         "name": "local",
                         "label": "Local",
-                        "route": "local"
+                        "route": "Local"
                     },
                     {
                         "name": "business",
@@ -141,12 +140,12 @@
                     {
                         "name": "lifestyle",
                         "label": "Lifestyle",
-                        "route": "lifestyle"
+                        "route": "Lifestyle"
                     },
                     {
                         "name": "culture",
                         "label": "Culture",
-                        "route": "culture"
+                        "route": "Culture"
                     },                    
                     {
                         "name": "sports",
@@ -156,7 +155,7 @@
                     {
                         "name": "opinion",
                         "label": "Opinion",
-                        "route": "opinion"
+                        "route": "Opinion"
                     }
                 ]
             },
@@ -167,7 +166,7 @@
                     {
                         "name": "local",
                         "label": "Local",
-                        "route": "local"
+                        "route": "Local"
                     },
                     {
                         "name": "business",
@@ -177,12 +176,12 @@
                     {
                         "name": "lifestyle",
                         "label": "Lifestyle",
-                        "route": "lifestyle"
+                        "route": "Lifestyle"
                     },
                     {
                         "name": "culture",
                         "label": "Culture",
-                        "route": "culture"
+                        "route": "Culture"
                     },                    
                     {
                         "name": "sports",
@@ -247,13 +246,14 @@
             },
             {
                 "type": "SWP\\Bundle\\CoreBundle\\Widget\\TemplateWidget",
-                "name": "mostRead",
+                "name": "footerPrim",
                 "visible": true,
                 "parameters": {
-                    "template_name": "mostPopularList.html.twig"
+                    "menu_name": "Footer navigation",
+                    "template_name": "menu2.html.twig"
                 },
-                "containers": ["listMost"]
-            },            
+                "containers": ["footerNav"]
+            },
             {
                 "type": "SWP\\Bundle\\CoreBundle\\Widget\\ContentListWidget",
                 "name": "mostShared",
@@ -269,19 +269,19 @@
                 "name": "mostCommented",
                 "visible": true,
                 "parameters": {
-                "list_name": "Most commented",
-                "template_name": "listMost.html.twig"
+                    "list_name": "Most commented",
+                    "template_name": "listMost.html.twig"
                 },
                 "containers": ["listMost"]
             },
             {
-                "type": "SWP\\Bundle\\TemplatesSystemBundle\\Widget\\MenuWidgetHandler",
-                "name": "footerPrim",
+                "type": "SWP\\Bundle\\CoreBundle\\Widget\\TemplateWidget",
+                "name": "mostRead",
                 "visible": true,
                 "parameters": {
-                    "menu_name": "footerPrim"
+                    "template_name": "mostPopularList.html.twig"
                 },
-                "containers": ["footerNav"]
+                "containers": ["listMost"]
             }
         ]
     }
