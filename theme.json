@@ -54,7 +54,6 @@
             ]
         }
     },
-
     "generatedData": {
         "routes": [
             {
@@ -120,8 +119,8 @@
         ],
         "menus": [
             {
-                "name": "Main navigation",
-                "label": "Main navigation",
+                "name": "mainNavigation",
+                "label": "Main Navigation",
                 "children": [
                     {
                         "name": "home",
@@ -131,7 +130,7 @@
                     {
                         "name": "local",
                         "label": "Local",
-                        "route": "local"
+                        "route": "Local"
                     },
                     {
                         "name": "business",
@@ -141,12 +140,12 @@
                     {
                         "name": "lifestyle",
                         "label": "Lifestyle",
-                        "route": "lifestyle"
+                        "route": "Lifestyle"
                     },
                     {
                         "name": "culture",
                         "label": "Culture",
-                        "route": "culture"
+                        "route": "Culture"
                     },                    
                     {
                         "name": "sports",
@@ -156,18 +155,18 @@
                     {
                         "name": "opinion",
                         "label": "Opinion",
-                        "route": "opinion"
+                        "route": "Opinion"
                     }
                 ]
             },
             {
-                "name": "Footer navigation",
-                "label": "Footer navigation",
+                "name": "footerPrim",
+                "label": "Footer Navigation",
                 "children": [
                     {
                         "name": "local",
                         "label": "Local",
-                        "route": "local"
+                        "route": "Local"
                     },
                     {
                         "name": "business",
@@ -177,12 +176,12 @@
                     {
                         "name": "lifestyle",
                         "label": "Lifestyle",
-                        "route": "lifestyle"
+                        "route": "Lifestyle"
                     },
                     {
                         "name": "culture",
                         "label": "Culture",
-                        "route": "culture"
+                        "route": "Culture"
                     },                    
                     {
                         "name": "sports",
@@ -236,7 +235,7 @@
         ],
         "widgets": [
             {
-                "type": 3,
+                "type": "SWP\\Bundle\\CoreBundle\\Widget\\TemplateWidget",
                 "name": "mainNav",
                 "visible": true,
                 "parameters": {
@@ -246,7 +245,7 @@
                 "containers": ["mainNav"]
             },
             {
-                "type": 3,
+                "type": "SWP\\Bundle\\CoreBundle\\Widget\\TemplateWidget",
                 "name": "footerPrim",
                 "visible": true,
                 "parameters": {
@@ -254,9 +253,9 @@
                     "template_name": "menu2.html.twig"
                 },
                 "containers": ["footerNav"]
-            },            
+            },
             {
-                "type": 4,
+                "type": "SWP\\Bundle\\CoreBundle\\Widget\\ContentListWidget",
                 "name": "mostShared",
                 "visible": true,
                 "parameters": {
@@ -266,17 +265,17 @@
                 "containers": ["listMost"]
             },
             {
-                "type": 4,
+                "type": "SWP\\Bundle\\CoreBundle\\Widget\\ContentListWidget",
                 "name": "mostCommented",
                 "visible": true,
                 "parameters": {
-                "list_name": "Most commented",
-                "template_name": "listMost.html.twig"
+                    "list_name": "Most commented",
+                    "template_name": "listMost.html.twig"
                 },
                 "containers": ["listMost"]
             },
             {
-                "type": 6,
+                "type": "SWP\\Bundle\\TemplatesSystemBundle\\Widget\\MenuWidgetHandler",
                 "name": "mostRead",
                 "visible": true,
                 "parameters": {
