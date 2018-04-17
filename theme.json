@@ -235,7 +235,7 @@
         ],
         "widgets": [
             {
-                "type": "SWP\\Bundle\\CoreBundle\\Widget\\TemplateWidget",
+                "type": "SWP\\Bundle\\TemplatesSystemBundle\\Widget\\MenuWidgetHandler",
                 "name": "mainNav",
                 "visible": true,
                 "parameters": {
@@ -275,7 +275,7 @@
                 "containers": ["listMost"]
             },
             {
-                "type": "SWP\\Bundle\\TemplatesSystemBundle\\Widget\\MenuWidgetHandler",
+                "type": "SWP\\Bundle\\CoreBundle\\Widget\\TemplateWidget",
                 "name": "mostRead",
                 "visible": true,
                 "parameters": {
