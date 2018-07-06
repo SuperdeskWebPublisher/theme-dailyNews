@@ -5,7 +5,15 @@
               </figure>
             </a>
             <div class="articleMetadata">
-              <span class="articleMetadata__byline"><a href="{{url(article)}}">{{ article.metadata.byline }}</a></span>
+              <span class="articleMetadata__byline">
+              {% if article.authors %}
+                {% for author in article.authors %} 
+                by {{ author.name }}
+                {% endfor %}
+              {% elseif article.metadata.byline %}
+                by {{ article.metadata.byline }}
+              {% endif %}
+              </span>
             </div>
             <a href="{{ url(article) }}">
               <h3 class="opinionsItem__headline opinionsItem__headline--small">{{ article.title }}</h3>

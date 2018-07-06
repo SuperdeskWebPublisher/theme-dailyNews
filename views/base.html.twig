@@ -151,20 +151,24 @@
 
 {% endcontainer %}
 
+  {% gimmelist author from authors|limit(3) with { role: ["featured"] } %}
+  {% if loop.first %}
   <div class="trendingTopics">
     <div class="container">
       <div class="okayNav-header">
         <nav role="navigation" id="topics" class="okayNav">
           <ul class="trendingTopics__items">
-            <li>Trending authors</li>
-            <li><a href="{{ url('trending') }}?by=John+Doe">John Doe</a></li>
-            <li><a href="{{ url('trending') }}?by=Test+Persona">Test Persona</a></li>
-            <li><a href="{{ url('trending') }}?by=Jane+Stockwriter">Jane Stockwriter</a></li>    
+            <li>Featured authors</li>
+  {% endif %}
+            <li><a href="{{ url('Authors', { 'authorSlug' : author.slug }) }}">{{ author.name }}</a></li>
+  {% if loop.last %}    
           </ul>
         </nav>
       </div>
     </div>
   </div>
+  {% endif %}
+  {% endgimmelist %} 
 
 {% block body %}{% endblock %}
 

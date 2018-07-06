@@ -2,42 +2,50 @@
 
 {% block body %}
 
-	<main class="container">
-		<div class="row">
+  <main class="container">
+    <div class="row">
+      <div class="col-md-9 col-sm-12 col-xs-12">
 
-			<div class="article article--noMargin col-md-9 col-sm-12 col-xs-12">
-				<article>
-					<h2 class="article__headline marginBottom30">Test Persona</h2>
+        {% gimme author with { slug: app.request.attributes.get('authorSlug') } %}
+        {% set currentAuthor = author %} 
 
-					<div class="article__text article__text--noMargin marginTop30">
+        <div class="authorMetadata marginTop30 marginBottom30">       
+          <figure class="authorMetadata__image"><img src="{{ url(author.avatar) }}"></figure>
+          <div class="authorMetadata__infoWrap">
+            <h2>{{ author.name }}</h2>
+            <p>{{ author.biography }}</p>
+            <span id="articlesNo"></span>
+          </div>
+        </div>
 
-						<p>{{ gimme.article.lead }}</p>
-						<p>{{ gimme.article.body }}</p>
+        {% endgimme %}
 
-					</div>
-				</article>
-			</div>
+        <div class="row">
+          <div class="articleGrid row">
 
-			{% set routeCheck = app.request.baseUrl ~ app.request.pathinfo %}
-			<div class="col-md-3 col-sm-12 col-xs-12 pull-right">
-			{% gimmelist article from articles|order('publishedAt','desc') with {'route': '/author'} %}
-				{% if loop.first %}
-				<div class="sidebarMenu marginBottom30">
-					<h3 class="sectionHeading">{{ gimme.route.name|capitalize }}</h3>
-				{% endif %}
-				{% if routeCheck == path(article) %}
-					<h4 class="sidebarMenu__headline sidebarMenu__headline--active">{{ article.title }}</h4>
-				{% else %}
-					<h4 class="sidebarMenu__headline"><a href="{{ url(article) }}">{{ article.title }}</a></h4>
-				{% endif %}
-				{% if loop.last %}
-				</div>
-				{% endif %}
-			{% endgimmelist %}
-			</div>
+    {% gimmelist article from articles|order('publishedAt','desc') with { 'author': currentAuthor.name, 'route' : 'Authors' } ignoreContext %}
+    
+        {% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--threeColumns col-md-4 col-sm-6 col-xs-12'} %}
 
-		</div>
+    {% if loop.last %}
+    <script type="text/javascript">
+      document.getElementById("articlesNo").innerHTML = "{{ loop.length }} articles";
+    </script>
+    {% endif %}
 
-	</main>
+    {% endgimmelist %} 
+
+			    </div>		
+        </div>
+      </div>
+
+
+      <div class="col-xs-12 col-sm-12 col-md-3">
+
+        {% include 'elements/most.html.twig' with {'class' : 'marginBottom30'} %}
+
+      </div>
+    </div>
+  </main>
 
 {% endblock %}

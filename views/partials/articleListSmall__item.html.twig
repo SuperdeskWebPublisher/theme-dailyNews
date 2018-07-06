@@ -7,6 +7,12 @@
 
     <h4 class="articleListSmall__headline"><a href="{{ url(article) }}">{{ article.title }}</a></h4>
     <div class="articleMetadata">
-        <span class="articleMetadata__byline">by <a href="{{ url(article) }}">{{ article.metadata.byline }}</a></span>
+    {% if article.authors %}
+      {% for author in article.authors %} 
+      <span class="articleMetadata__byline">by {{ author.name }}</span>
+      {% endfor %}
+    {% elseif article.metadata.byline %}
+      <span class="articleMetadata__byline">by {{ article.metadata.byline }}</span>
+    {% endif %} 
     </div>
 </article>
