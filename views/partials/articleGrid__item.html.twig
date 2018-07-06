@@ -6,16 +6,22 @@
 {% include 'partials/image610x380.html.twig' with {'imgCaption' : imgCaption, 'rend610' : rend610, 'where' : 'grid' } %}
 
   <a href="{{ url(article) }}">
-    <span class="articleGrid__kicker">Lorem ipsum</span>
+    <span class="articleGrid__kicker">{{ article.route.name }}</span>
     <h3 class="articleGrid__headline">{{ article.title }}</h3>
   </a>
-  <p class="articleGrid__text">{% if foo is empty %}
+  <p class="articleGrid__text">{% if article.lead == "" %}
       {{ article.body|striptags|safeTruncate(160,"...") }}
     {%else%}
       {{ article.lead|striptags|safeTruncate(160,"...") }}
     {%endif%}</p>
   <div class="articleMetadata">
-    <span class="articleMetadata__byline">by <a href="{{ url(article) }}">{{article.metadata.byline}}</a></span>
+    {% if article.authors %}
+      {% for author in article.authors %} 
+      <span class="articleMetadata__byline">by {{ author.name }}</span>
+      {% endfor %}
+    {% elseif article.metadata.byline %}
+      <span class="articleMetadata__byline">by {{ article.metadata.byline }}</span>
+    {% endif %}  
     <a class="articleMetadata__shares articleMetadata__info" href="#">240</a>
     <a class="articleMetadata__comments articleMetadata__info" href="#">20</a>
   </div>

@@ -25,18 +25,13 @@
 
 
             {# List all articles from current route and limit them to `itemsPerPage` value starting from `start` value #}
-            {% cache 'newsList'~app.environment~currentPage {time: 600} %}
+            
               {% gimmelist article from articles|start(start)|limit(itemsPerPage)|order('publishedAt','desc') %}
 
 
             {% if loop.first and currentPage == 1 %}
 
-              {% cache 'newsArticle' {gen: article} %}
-
               {% include 'partials/mainArticle.html.twig' with {'class' : ''} %}
-
-
-              {% endcache %}
 
               <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
@@ -51,13 +46,8 @@
 
               {% endif %}
 
-
-              {% cache 'newsArticle' {gen: article} %}
-
               {% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--threeColumns col-md-4 col-sm-6 col-xs-12'} %}
 
-
-              {% endcache %}
             {% endif %}
                 {# Render pagination only at end of list #}
                 {% if loop.last  %}
@@ -85,7 +75,6 @@
                  {% endif %}
 
              {% endgimmelist %}
-             {% endcache %}
 
         </div>
       </div>
