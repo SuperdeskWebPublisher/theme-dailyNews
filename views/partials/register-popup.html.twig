@@ -9,33 +9,33 @@
       </div>
       <div class="modal-body">
 
-		<div class="styled_form login_form" id="registerFormHolder">
+    <div class="styled_form login_form" id="registerFormHolder">
 
-			<form name="register" action="/app_dev.php/api/v1/users/register/" id="registerForm">
-				<div class="modalUser__inputWrap">
-					<label for="l_field_login">{{ 'user.popup.email'|trans|desc('E-mail') }}</label>
-					<input type="email" name="_email" value="" />
-				</div>                   
-				<div class="modalUser__inputWrap">
-					<label for="l_field_login">{{ 'user.popup.username'|trans|desc('User name') }}</label>
-					<input type="text" name="_username" value="" />
-				</div>
-				<div class="modalUser__inputWrap">
-					<label for="l_field_login">{{ 'user.popup.password'|trans|desc('Password') }}</label>
-					<input type="password" name="_password" value="" />
-				</div>   
-				<div class="modalUser__inputWrap">
-					<label for="l_field_login">{{ 'user.popup.passwordConfirm'|trans|desc('Confirm password') }}</label>
-					<input type="password" name="_password2" value="" />
-				</div>                         
-				<div class="modalUser__inputWrap">
-					<input type="submit" value="Sign Up" class="button button--color">
-				</div>           
-			</form>
+      <form name="register" action="/app_dev.php/api/v1/users/register/" id="registerForm">
+        <div class="modalUser__inputWrap">
+          <label for="l_field_login">{{ 'user.popup.email'|trans|desc('E-mail') }}</label>
+          <input type="email" name="_email" value="" />
+        </div>                   
+        <div class="modalUser__inputWrap">
+          <label for="l_field_login">{{ 'user.popup.username'|trans|desc('User name') }}</label>
+          <input type="text" name="_username" value="" />
+        </div>
+        <div class="modalUser__inputWrap">
+          <label for="l_field_login">{{ 'user.popup.password'|trans|desc('Password') }}</label>
+          <input type="password" name="_password" value="" />
+        </div>   
+        <div class="modalUser__inputWrap">
+          <label for="l_field_login">{{ 'user.popup.passwordConfirm'|trans|desc('Confirm password') }}</label>
+          <input type="password" name="_password2" value="" />
+        </div>                         
+        <div class="modalUser__inputWrap">
+          <input type="submit" value="Sign Up" class="button button--color">
+        </div>           
+      </form>
 
-			<div id="registrationResult" class="notification"></div>
+      <div id="registrationResult" class="notification"></div>
 
-		</div>
+    </div>
 
       </div>
     </div>
