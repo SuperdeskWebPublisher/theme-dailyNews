@@ -2,191 +2,196 @@
 
 {% block body %}
 
-	<main class="container">
-		<div class="row">
-			<div class="col-md-9 col-sm-12 col-xs-12">
-				{% gimmelist item from contentListItems|limit(7) with {contentListName: "Top news"} %}
-				{% if loop.first %}
-        			{% include 'partials/mainArticle.html.twig' with { 'article': item.content } %}
-        		<div class="row">
-					<div class="col-md-8 col-sm-12 col-xs-12 pull-right">
-						<div class="articleGrid row">
-				{% else %}
-						{% include 'partials/articleGrid__item.html.twig' with { 'article' : item.content, 'class' : 'articleGrid__item--twoColumns col-md-6 col-sm-6 col-xs-12'} %}
-				{% endif %}
-				{% if loop.last %}
-    					</div>
-    				</div>
-    			{% endif %}
-    			{% endgimmelist %}
+  <main class="container">
+    <div class="row">
+      <div class="col-md-9 col-sm-12 col-xs-12">
 
-					<div class="col-md-4 col-sm-12 col-xs-12 pull-right">
-						<div class="greyBackground articleListSmall marginBottom30">
-							<h3 class="sectionHeading">Latest news</h3>
-								{% gimmelist article from articles|start(0)|limit(6)|order('publishedAt','desc')  %}
-									{% include 'partials/articleListSmall__item.html.twig'  %}
-								{% endgimmelist %}
+      {% cache 'contentListTopNews' { gen: contentList } %}
 
-						</div>
+        {% gimmelist item from contentListItems|limit(7) with {contentListName: "Top news"} %}
+        {% if loop.first %}
+              {% include 'partials/mainArticle.html.twig' with { 'article': item.content } %}
+            <div class="row">
+          <div class="col-md-8 col-sm-12 col-xs-12 pull-right">
+            <div class="articleGrid row">
+        {% else %}
+            {% include 'partials/articleGrid__item.html.twig' with { 'article' : item.content, 'class' : 'articleGrid__item--twoColumns col-md-6 col-sm-6 col-xs-12'} %}
+        {% endif %}
+        {% if loop.last %}
+              </div>
+            </div>
+          {% endif %}
+          {% endgimmelist %}
 
-						{% container 'frontLeftSidebar' %}
-						<div class="ad marginBottom30 hidden-xs">
-							<img src="{{ asset('theme/img/article_img/ad.png') }}">
-						</div>
-						{% endcontainer %}
-					</div>
-				</div>
-			</div>
+      {% endcache %}
 
-			<div class="col-xs-12 col-sm-12 col-md-3">
+          <div class="col-md-4 col-sm-12 col-xs-12 pull-right">
+            <div class="greyBackground articleListSmall marginBottom30">
+              <h3 class="sectionHeading">Latest news</h3>
+                {% gimmelist article from articles|start(0)|limit(6)|order('publishedAt','desc')  %}
+                  {% include 'partials/articleListSmall__item.html.twig'  %}
+                {% endgimmelist %}
 
-				{% include 'elements/most.html.twig' with {'class' : 'marginBottom30'} %}
+            </div>
 
-				{% container 'frontSidebar' %}
+            {% container 'frontLeftSidebar' %}
+            <div class="ad marginBottom30 hidden-xs">
+              <img src="{{ asset('theme/img/article_img/ad.png') }}">
+            </div>
+            {% endcontainer %}
+          </div>
+        </div>
+      </div>
 
-				<div class="ad hidden-xs marginTop30 marginBottom30">
-					<img src="{{ asset('theme/img/article_img/ad.png') }}">
-				</div>
+      <div class="col-xs-12 col-sm-12 col-md-3">
 
-				<div class="marginTop30 marginBottom30">
-					{% include 'elements/facebook.html.twig' %}
-				</div>
+        {% include 'elements/most.html.twig' with {'class' : 'marginBottom30'} %}
 
-				{% include 'elements/selectedComment.html.twig' with {'class' : 'marginTop30 marginBottom30'} %}
+        {% container 'frontSidebar' %}
 
-				{% endcontainer %}
+        <div class="ad hidden-xs marginTop30 marginBottom30">
+          <img src="{{ asset('theme/img/article_img/ad.png') }}">
+        </div>
 
-			</div>
+        <div class="marginTop30 marginBottom30">
+          {% include 'elements/facebook.html.twig' %}
+        </div>
 
-		</div>
+        {% include 'elements/selectedComment.html.twig' with {'class' : 'marginTop30 marginBottom30'} %}
 
-		<div class="row">
-			<div class="col-xs-12">
-				<h3 class="sectionHeadingBold marginTop30"><a href="{{ url('local') }}">Local</a></h3>
-			</div>
+        {% endcontainer %}
 
-			<div class="articleGrid">
+      </div>
 
-				{% gimmelist article from articles|start(0)|limit(4)|order('publishedAt','desc') with {'route': '/local'}  %}
-					{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns col-md-3 col-sm-6 col-xs-12'} %}
-				{% endgimmelist %}
+    </div>
 
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="sectionHeadingBold marginTop30"><a href="{{ url('local') }}">Local</a></h3>
+      </div>
 
-			</div>
+      <div class="articleGrid">
 
-		</div>
-
-		<div class="row">
-			<div class="col-md-9 col-sm-12 col-xs-12">
-				<div class="row opinions">
-					<div class="col-xs-12">
-						<h3 class="sectionHeadingBold marginTop30"><a href="{{ url('opinion') }}">Opinion</a></h3>
-					</div>
-
-					{% gimmelist article from articles|start(0)|limit(3)|order('publishedAt','desc') with {'route': '/opinion'}  %}
-						{% if loop.index == 1 %}
-							{% include 'partials/opinionsItem.html.twig' with {'class' : 'col-sm-8 col-md-8 col-xs-12'} %}
-						{% else %}
-							{% include 'partials/opinionsItem--small.html.twig' with {'class' : 'col-sm-4 col-md-4 col-xs-12'} %}
-						{% endif %}
-					{% endgimmelist %}
-
-				</div>
-			</div>
-
-			<div class="stripBox col-md-3 col-sm-12 col-xs-12">
-				<a class="stripBox__title active" href="#">Voting poll</a>
-
-				<div class="votingPoll stripBox__sectionContent">
-					<script type="text/javascript" src="//cdn.playbuzz.com/widget/feed.js"></script>
-					<div class="pb_feed" data-embed-by="50ccef36-6400-449f-9126-95677cd3f996" data-game="/ljubar10/dailynews-example-poll" data-recommend="false" data-game-info="false" data-comments="false" data-shares="false" ></div>
-				</div>
-			</div>
-
-		</div>
-
-		<div class="row">
-			<div class="col-xs-12">
-				<h3 class="sectionHeadingBold marginTop30"><a href="{{ url('business') }}">Business</a></h3>
-			</div>
-
-			<div class="articleGrid">
-
-				{% gimmelist article from articles|start(0)|limit(3)|order('publishedAt','desc') with {'route': '/business'}  %}
-					{% if loop.index == 1 %}
-						{% include 'partials/mainArticle--small.html.twig' with {'class' : 'col-md-6 col-sm-12 col-xs-12', 'image':'small', 'deck': 'none'} %}
-					{% else %}
-						{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--threeColumns col-md-3 col-sm-6 col-xs-12'} %}
-					{% endif %}
-				{% endgimmelist %}
-
-			</div>
-		</div>
-
-		{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') with {'route': '/lifestyle'}  %}
-
-		{% set rend1250 = "{{ asset('theme/img/article_img/1250x600.png') }}" %}
-		{% gimmelist media from articleMedia|limit(1) with {'article': article} %}
-		{% set imgCaption = media.body %}
-  			{% if media.renditions is iterable %}
-    			{% for rendition in media.renditions %}
-      				{% if rendition.name == '1250x600' %}
-        				{% set rend1250 = path(rendition) %}
-      				{% endif %}
-    			{% endfor %}
-  			{% endif %}
-		{% endgimmelist %}
-
-		<div class="row">
-			<div class="gallery marginTop30 marginBottom30 col-xs-12">
-				<figure class="gallery__image">
-					<a class="gallery__strip" href="{{ path('lifestyle') }}">Lifestyle</a>
-					<a href="{{ path(article) }}">
-						<img src="{{ rend1250 }}" alt="{{ imgCaption|striptags }}">
-					</a>
-				</figure>
-				<div class="gallery__text">
-					<h3 class="gallery__headline"><a href="{{ path(article) }}">{{ article.title }}</a></h3>
-					<p>{{ article.lead|striptags|safeTruncate(200,"...") }}</p>
-				</div>
-			</div>
-		</div>
-		{% endgimmelist %}
-
-		<div class="row">
-			<div class="col-md-6 col-sm-12 col-xs-12">
-				<h3 class="sectionHeadingBold marginTop30"><a href="{{ url('sports') }}">Sports</a></h3>
-				<div class="row">
-					<div class="articleGrid col-md-6 col-sm-6 col-xs-12">
-						{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') with {'route': '/sports'}  %}
-								{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns'} %}
-						{% endgimmelist %}
-					</div>
-					<div class="articleListSmall col-md-6 col-sm-6 col-xs-12">
-						{% gimmelist article from articles|start(1)|limit(3) with {'route': '/sports'}  %}
-								{% include 'partials/articleListSmall__item.html.twig'  %}
-						{% endgimmelist %}
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6 col-sm-12 col-xs-12">
-				<h3 class="sectionHeadingBold marginTop30"><a href="{{ url('culture') }}">Culture</a></h3>
-				<div class="row">
-					<div class="articleGrid col-md-6 col-sm-6 col-xs-12">
-						{% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') with {'route': '/culture'}  %}
-								{% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns'} %}
-						{% endgimmelist %}
-					</div>
-					<div class="articleListSmall col-md-6 col-sm-6 col-xs-12">
-						{% gimmelist article from articles|start(1)|limit(3)|order('publishedAt','desc') with {'route': '/technology'}  %}
-								{% include 'partials/articleListSmall__item.html.twig'  %}
-						{% endgimmelist %}
-					</div>
-				</div>
-			</div>
-		</div>
+        {% gimmelist article from articles|start(0)|limit(4)|order('publishedAt','desc') with {'route': '/local'}  %}
+          {% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns col-md-3 col-sm-6 col-xs-12'} %}
+        {% endgimmelist %}
 
 
-	</main>
-	{% endblock %}
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-9 col-sm-12 col-xs-12">
+        <div class="row opinions">
+          <div class="col-xs-12">
+            <h3 class="sectionHeadingBold marginTop30"><a href="{{ url('opinion') }}">Opinion</a></h3>
+          </div>
+
+          {% gimmelist article from articles|start(0)|limit(3)|order('publishedAt','desc') with {'route': '/opinion'}  %}
+            {% if loop.index == 1 %}
+              {% include 'partials/opinionsItem.html.twig' with {'class' : 'col-sm-8 col-md-8 col-xs-12'} %}
+            {% else %}
+              {% include 'partials/opinionsItem--small.html.twig' with {'class' : 'col-sm-4 col-md-4 col-xs-12'} %}
+            {% endif %}
+          {% endgimmelist %}
+
+        </div>
+      </div>
+
+      <div class="stripBox col-md-3 col-sm-12 col-xs-12">
+        <a class="stripBox__title active" href="#">Voting poll</a>
+
+        <div class="votingPoll stripBox__sectionContent">
+          <script type="text/javascript" src="//cdn.playbuzz.com/widget/feed.js"></script>
+          <div class="pb_feed" data-embed-by="50ccef36-6400-449f-9126-95677cd3f996" data-game="/ljubar10/dailynews-example-poll" data-recommend="false" data-game-info="false" data-comments="false" data-shares="false" ></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="sectionHeadingBold marginTop30"><a href="{{ url('business') }}">Business</a></h3>
+      </div>
+
+      <div class="articleGrid">
+
+        {% gimmelist article from articles|start(0)|limit(3)|order('publishedAt','desc') with {'route': '/business'}  %}
+          {% if loop.index == 1 %}
+            {% include 'partials/mainArticle--small.html.twig' with {'class' : 'col-md-6 col-sm-12 col-xs-12', 'image':'small', 'deck': 'none'} %}
+          {% else %}
+            {% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--threeColumns col-md-3 col-sm-6 col-xs-12'} %}
+          {% endif %}
+        {% endgimmelist %}
+
+      </div>
+    </div>
+
+    {% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') with {'route': '/lifestyle'}  %}
+
+    {% set rend1250 = "{{ asset('theme/img/article_img/1250x600.png') }}" %}
+    {% gimmelist media from articleMedia|limit(1) with {'article': article} %}
+    {% set imgCaption = media.body %}
+        {% if media.renditions is iterable %}
+          {% for rendition in media.renditions %}
+              {% if rendition.name == '1250x600' %}
+                {% set rend1250 = path(rendition) %}
+              {% endif %}
+          {% endfor %}
+        {% endif %}
+    {% endgimmelist %}
+
+    <div class="row">
+      <div class="gallery marginTop30 marginBottom30 col-xs-12">
+        <figure class="gallery__image">
+          <a class="gallery__strip" href="{{ path('lifestyle') }}">Lifestyle</a>
+          <a href="{{ path(article) }}">
+            <img src="{{ rend1250 }}" alt="{{ imgCaption|striptags }}">
+          </a>
+        </figure>
+        <div class="gallery__text">
+          <h3 class="gallery__headline"><a href="{{ path(article) }}">{{ article.title }}</a></h3>
+          <p>{{ article.lead|striptags|safeTruncate(200,"...") }}</p>
+        </div>
+      </div>
+    </div>
+    {% endgimmelist %}
+
+    <div class="row">
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <h3 class="sectionHeadingBold marginTop30"><a href="{{ url('sports') }}">Sports</a></h3>
+        <div class="row">
+          <div class="articleGrid col-md-6 col-sm-6 col-xs-12">
+            {% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') with {'route': '/sports'}  %}
+                {% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns'} %}
+            {% endgimmelist %}
+          </div>
+          <div class="articleListSmall col-md-6 col-sm-6 col-xs-12">
+            {% gimmelist article from articles|start(1)|limit(3) with {'route': '/sports'}  %}
+                {% include 'partials/articleListSmall__item.html.twig'  %}
+            {% endgimmelist %}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <h3 class="sectionHeadingBold marginTop30"><a href="{{ url('culture') }}">Culture</a></h3>
+        <div class="row">
+          <div class="articleGrid col-md-6 col-sm-6 col-xs-12">
+            {% gimmelist article from articles|start(0)|limit(1)|order('publishedAt','desc') with {'route': '/culture'}  %}
+                {% include 'partials/articleGrid__item.html.twig' with {'class' : 'articleGrid__item--fourColumns'} %}
+            {% endgimmelist %}
+          </div>
+          <div class="articleListSmall col-md-6 col-sm-6 col-xs-12">
+            {% gimmelist article from articles|start(1)|limit(3)|order('publishedAt','desc') with {'route': '/technology'}  %}
+                {% include 'partials/articleListSmall__item.html.twig'  %}
+            {% endgimmelist %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </main>
+  {% endblock %}
